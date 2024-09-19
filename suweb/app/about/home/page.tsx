@@ -1,14 +1,67 @@
+'use client'
+
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Instagram, Mail, Phone, Play } from "lucide-react";
-import { ReactNode } from "react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Facebook, Instagram, Mail, Phone, Moon, Sun } from "lucide-react";
+import { ReactNode, useState, useEffect, useRef } from "react";
+import { Button } from "@chakra-ui/react";
 import { JSX, SVGProps } from "react";
 
 export default function LandingPage() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [images, setImages] = useState([]);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    // In a real Next.js app, you'd typically fetch this data from an API
+    // For this example, we'll simulate fetching image paths
+    const imagePaths = [
+      '/images/gallery/acero.jpg',
+      '/images/gallery/petrol.jpg',
+      '/images/gallery/pp.jpg',
+      '/images/gallery/rockstar.jpg',
+      '/images/gallery/zapas.jpg',
+      '/images/gallery/sol.jpg',
+      '/images/gallery/7up.jpeg'
+    ];
+    setImages(imagePaths);
+  }, []);
+
+  useEffect(() => {
+    const gallery = galleryRef.current;
+    if (gallery) {
+      const scrollRight = () => {
+        setScrollPosition((prevPosition) => {
+          const newPosition = prevPosition + 1;
+          if (newPosition >= gallery.scrollWidth - gallery.clientWidth) {
+            return 0;
+          }
+          return newPosition;
+        });
+      };
+      const intervalId = setInterval(scrollRight, 50);
+      return () => clearInterval(intervalId);
+    }
+  }, []);
+
+  useEffect(() => {
+    const gallery = galleryRef.current;
+    if (gallery) {
+      gallery.scrollTo({
+        left: scrollPosition,
+        behavior: scrollPosition === 0 ? 'auto' : 'smooth'
+      });
+    }
+  }, [scrollPosition]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-purple-100 to-pink-100">
-      <header className="px-4 lg:px-6 h-20 flex items-center bg-white shadow-md">
+    <div className={`flex flex-col min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gradient-to-b from-purple-100 to-pink-100'}`}>
+      <header className={`px-4 lg:px-6 h-20 flex items-center ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
         <div className="container mx-auto flex items-center justify-between">
           <Link className="flex items-center justify-center" href="#">
             <Image
@@ -16,34 +69,43 @@ export default function LandingPage() {
               alt="Su Rótulo en 3D Logo"
               width={210}
               height={60}
-              className="h-12 w-auto"
+              className={`h-12 w-auto ${darkMode ? 'filter invert' : ''}`}
             />
           </Link>
-          <nav className="ml-auto flex gap-4 sm:gap-6">
+          <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
             <Link
-              className="text-sm text-purple-600 font-medium hover:text-purple-950 transition-colors"
+              className={`text-sm ${darkMode ? 'text-gray-300 hover:text-white' : 'text-purple-600 hover:text-purple-950'} font-medium transition-colors`}
               href="#services"
             >
               Services
             </Link>
             <Link
-              className="text-sm text-purple-600 font-medium hover:text-purple-950 transition-colors"
-              href="#video"
+              className={`text-sm ${darkMode ? 'text-gray-300 hover:text-white' : 'text-purple-600 hover:text-purple-950'} font-medium transition-colors`}
+              href="#gallery"
             >
               Our Work
             </Link>
             <Link
-              className="text-sm text-purple-600 font-medium hover:text-purple-950 transition-colors"
+              className={`text-sm ${darkMode ? 'text-gray-300 hover:text-white' : 'text-purple-600 hover:text-purple-950'} font-medium transition-colors`}
               href="#contact"
             >
               Contact
             </Link>
+            <Button
+              onClick={toggleDarkMode}
+              size="sm"
+              variant="ghost"
+              aria-label="Toggle dark mode"
+              className={`p-2 ${darkMode ? 'text-yellow-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-200'}`}
+            >
+              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </Button>
           </nav>
         </div>
       </header>
 
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 text-white">
+        <section className={`w-full py-12 md:py-24 lg:py-32 xl:py-48 ${darkMode ? 'bg-gray-800' : 'bg-gradient-to-r from-purple-600 via-pink-500 to-red-500'} text-white`}>
           <div className="container mx-auto px-4 md:px-6 max-w-screen-lg">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
@@ -54,30 +116,31 @@ export default function LandingPage() {
                   Crafting eye-catching 3D signs and custom designs that make your business stand out. Quality, creativity, and impact - all in one place.
                 </p>
               </div>
-              <div className="space-x-4">
-                <Button className="bg-white text-purple-600 hover:bg-purple-100 box-border">
-                  Get a Quote
-                </Button>
-                <Button colorScheme='teal' variant='ghost'
-                >
-                  Our Portfolio
-                </Button>
-              </div>
             </div>
           </div>
         </section>
 
-        <section id="video" className="w-full py-12 md:py-24 bg-white">
+        <section id="gallery" className={`w-full py-12 md:py-24 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
           <div className="container mx-auto px-4 md:px-6 max-w-screen-lg">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-8 text-purple-600">
-              See Our Work in Action
+            <h2 className={`text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-8 ${darkMode ? 'text-white' : 'text-purple-600'}`}>
+              Our Work Gallery
             </h2>
-            <div className="aspect-video rounded-xl overflow-hidden bg-gray-100 shadow-lg">
-              <div className="w-full h-full flex items-center justify-center">
-                <Button className="flex items-center space-x-2">
-                  <Play className="w-6 h-6" />
-                  <span>Play Promo Video</span>
-                </Button>
+            <div 
+              ref={galleryRef}
+              className="overflow-hidden"
+            >
+              <div className="flex transition-transform duration-300 ease-linear" style={{ width: `${images.length * 100}%` }}>
+                {images.map((src, index) => (
+                  <div key={index} className="flex-shrink-0 w-full">
+                    <Image
+                      src={src}
+                      alt={`Gallery image ${index + 1}`}
+                      width={400}
+                      height={300}
+                      className="rounded-lg shadow-lg mx-auto"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -85,32 +148,36 @@ export default function LandingPage() {
 
         <section
           id="services"
-          className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-pink-100 to-purple-100"
+          className={`w-full py-12 md:py-24 lg:py-32 ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-b from-pink-100 to-purple-100'}`}
         >
           <div className="container mx-auto px-4 md:px-6 max-w-screen-lg">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-purple-600">
+            <h2 className={`text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 ${darkMode ? 'text-white' : 'text-purple-600'}`}>
               Our Services
             </h2>
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
               <ServiceCard
-                icon={<SignpostIcon className="h-10 w-10 text-purple-500" />}
+                icon={<SignpostIcon className={`h-10 w-10 ${darkMode ? 'text-purple-400' : 'text-purple-500'}`} />}
                 title="Signboards"
                 description="Eye-catching 3D signage solutions to make your brand pop."
+                darkMode={darkMode}
               />
               <ServiceCard
-                icon={<CubeIcon className="h-10 w-10 text-pink-500" />}
+                icon={<CubeIcon className={`h-10 w-10 ${darkMode ? 'text-pink-400' : 'text-pink-500'}`} />}
                 title="Custom Designs"
                 description="Unique 3D designs tailored to your brand identity and needs."
+                darkMode={darkMode}
               />
               <ServiceCard
-                icon={<PenToolIcon className="h-10 w-10 text-red-500" />}
+                icon={<PenToolIcon className={`h-10 w-10 ${darkMode ? 'text-red-400' : 'text-red-500'}`} />}
                 title="3D Modeling"
                 description="Professional 3D modeling services for various applications."
+                darkMode={darkMode}
               />
               <ServiceCard
-                icon={<ShirtIcon className="h-10 w-10 text-orange-500" />}
+                icon={<ShirtIcon className={`h-10 w-10 ${darkMode ? 'text-orange-400' : 'text-orange-500'}`} />}
                 title="Printed Products"
                 description="High-quality printed products for promotional needs."
+                darkMode={darkMode}
               />
             </div>
           </div>
@@ -118,15 +185,15 @@ export default function LandingPage() {
 
         <section
           id="contact"
-          className="w-full py-12 md:py-24 lg:py-32 bg-white"
+          className={`w-full py-12 md:py-24 lg:py-32 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
         >
           <div className="container mx-auto px-4 md:px-6 max-w-screen-lg">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-purple-600">
+                <h2 className={`text-3xl font-bold tracking-tighter sm:text-5xl ${darkMode ? 'text-white' : 'text-purple-600'}`}>
                   Get in Touch
                 </h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                <p className={`max-w-[900px] ${darkMode ? 'text-gray-300' : 'text-gray-500'} md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed`}>
                   Ready to elevate your brand with 3D signage? Contact us for a free consultation and quote.
                 </p>
               </div>
@@ -136,21 +203,25 @@ export default function LandingPage() {
                   href="https://www.instagram.com/su.rotulo/?locale=zh-TW&hl=am-et"
                   icon={<Instagram className="h-6 w-6" />}
                   label="Instagram"
+                  darkMode={darkMode}
                 />
                 <SocialLink
                   href="https://www.facebook.com/Surotulopuntoes/"
                   icon={<Facebook className="h-6 w-6" />}
                   label="Facebook"
+                  darkMode={darkMode}
                 />
                 <SocialLink
                   href="tel:+34 637 436 773"
                   icon={<Phone className="h-6 w-6" />}
                   label="Phone"
+                  darkMode={darkMode}
                 />
                 <SocialLink
                   href="mailto:surotulo@yahoo.es"
                   icon={<Mail className="h-6 w-6" />}
                   label="Email"
+                  darkMode={darkMode}
                 />
               </div>
             </div>
@@ -158,20 +229,20 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-purple-100">
+      <footer className={`flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-purple-100'}`}>
         <div className="container mx-auto flex items-center justify-between max-w-screen-lg">
-          <p className="text-xs text-purple-600">
+          <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-purple-600'}`}>
             © 2024 Su Rótulo en 3D. All rights reserved.
           </p>
           <nav className="sm:ml-auto flex gap-4 sm:gap-6">
             <Link
-              className="text-xs hover:underline underline-offset-4 text-purple-600"
+              className={`text-xs hover:underline underline-offset-4 ${darkMode ? 'text-gray-400' : 'text-purple-600'}`}
               href="#"
             >
               Terms of Service
             </Link>
             <Link
-              className="text-xs hover:underline underline-offset-4 text-purple-600"
+              className={`text-xs hover:underline underline-offset-4 ${darkMode ? 'text-gray-400' : 'text-purple-600'}`}
               href="#"
             >
               Privacy
@@ -187,14 +258,15 @@ type ServiceCardProps = {
   icon: ReactNode;
   title: string;
   description: string;
+  darkMode: boolean;
 };
 
-function ServiceCard({ icon, title, description }: ServiceCardProps) {
+function ServiceCard({ icon, title, description, darkMode }: ServiceCardProps) {
   return (
-    <div className="flex flex-col items-center space-y-4 text-center bg-white p-6 rounded-xl shadow-lg transition-transform hover:scale-105">
-      <div className="p-4 bg-purple-100 rounded-full">{icon}</div>
-      <h3 className="text-xl font-bold text-purple-500">{title}</h3>
-      <p className="text-sm text-gray-500">{description}</p>
+    <div className={`flex flex-col items-center space-y-4 text-center ${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-xl shadow-lg transition-transform hover:scale-105`}>
+      <div className={`p-4 ${darkMode ? 'bg-gray-700' : 'bg-purple-100'} rounded-full`}>{icon}</div>
+      <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-purple-500'}`}>{title}</h3>
+      <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>{description}</p>
     </div>
   );
 }
@@ -203,13 +275,14 @@ type SocialLinkProps = {
   href: string;
   icon: ReactNode;
   label: string;
+  darkMode: boolean;
 };
 
-function SocialLink({ href, icon, label }: SocialLinkProps) {
+function SocialLink({ href, icon, label, darkMode }: SocialLinkProps) {
   return (
     <Link
       href={href}
-      className="text-purple-600 hover:text-purple-700 transition-colors"
+      className={`${darkMode ? 'text-gray-300 hover:text-white' : 'text-purple-600 hover:text-purple-700'} transition-colors`}
     >
       {icon}
       <span className="sr-only">{label}</span>
@@ -221,21 +294,21 @@ function SignpostIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="icon icon-tabler icon-tabler-signpost"
-      width={24}
-      height={24}
+      width="24"
+      height="24"
       viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
       fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
       {...props}
     >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M7 14h10l3 -3l-3 -3h-10v-4" />
-      <path d="M6 20v-16" />
-      <path d="M6 20h6" />
+      <path d="M12 3v3" />
+      <path d="M18.5 13h-13L2 9.5 5.5 6h13L22 9.5Z" />
+      <path d="M18.5 6h3" />
+      <path d="M2 9.5h3" />
+      <path d="M12 13v8" />
     </svg>
   );
 }
@@ -244,20 +317,19 @@ function CubeIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="icon icon-tabler icon-tabler-cube"
-      width={24}
-      height={24}
+      width="24"
+      height="24"
       viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
       fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
       {...props}
     >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <polyline points="12 3 20 7 12 11 4 7 12 3" />
-      <polyline points="12 12 20 8 20 16 12 20 4 16 4 8 12 12" />
+      <path d="m21.12 6.4-7.12 4.16v7.53L21.12 14V6.4Z" />
+      <path d="m2.88 6.4 7.12 4.16v7.53L2.88 14V6.4Z" />
+      <path d="m2.88 6.4 9.12-5.3 9.12 5.3" />
     </svg>
   );
 }
@@ -266,21 +338,20 @@ function PenToolIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="icon icon-tabler icon-tabler-pen-tool"
-      width={24}
-      height={24}
+      width="24"
+      height="24"
       viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
       fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
       {...props}
     >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 19l7 -7 2 2 -7 7 -2 0l-2 -2l7 -7" />
-      <path d="M5 5l14 14" />
-      <path d="M6 7l4 4" />
+      <path d="m12 19 7-7 3 3-7 7-3-3z" />
+      <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+      <path d="m2 2 7.586 7.586" />
+      <circle cx="11" cy="11" r="2" />
     </svg>
   );
 }
@@ -289,20 +360,17 @@ function ShirtIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="icon icon-tabler icon-tabler-shirt"
-      width={24}
-      height={24}
+      width="24"
+      height="24"
       viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
       fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
       {...props}
     >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M4 7l3 -3a6 6 0 0 1 10 0l3 3v14h-4v-7h-8v7h-4v-14" />
-      <path d="M10 7h4v7h-4z" />
+      <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" />
     </svg>
   );
 }
