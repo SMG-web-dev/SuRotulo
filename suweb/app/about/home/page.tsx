@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -11,57 +11,40 @@ export default function LandingPage() {
   const [darkMode, setDarkMode] = useState(false);
   const [images, setImages] = useState([]);
   const galleryRef = useRef<HTMLDivElement>(null);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     // In a real Next.js app, you'd typically fetch this data from an API
     // For this example, we'll simulate fetching image paths
     const imagePaths = [
-      '/images/gallery/acero.jpg',
-      '/images/gallery/petrol.jpg',
-      '/images/gallery/pp.jpg',
-      '/images/gallery/rockstar.jpg',
-      '/images/gallery/zapas.jpg',
-      '/images/gallery/sol.jpg',
-      '/images/gallery/7up.jpeg'
+      "/images/gallery/acero.jpg",
+      "/images/gallery/petrol.jpg",
+      "/images/gallery/pp.jpg",
+      "/images/gallery/rockstar.jpg",
+      "/images/gallery/zapas.jpg",
+      "/images/gallery/sol.jpg",
+      "/images/gallery/7up.jpeg",
     ];
     setImages(imagePaths);
   }, []);
-
-  useEffect(() => {
-    const gallery = galleryRef.current;
-    if (gallery) {
-      const scrollRight = () => {
-        setScrollPosition((prevPosition) => {
-          const newPosition = prevPosition + 1;
-          if (newPosition >= gallery.scrollWidth - gallery.clientWidth) {
-            return 0;
-          }
-          return newPosition;
-        });
-      };
-      const intervalId = setInterval(scrollRight, 50);
-      return () => clearInterval(intervalId);
-    }
-  }, []);
-
-  useEffect(() => {
-    const gallery = galleryRef.current;
-    if (gallery) {
-      gallery.scrollTo({
-        left: scrollPosition,
-        behavior: scrollPosition === 0 ? 'auto' : 'smooth'
-      });
-    }
-  }, [scrollPosition]);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
 
   return (
-    <div className={`flex flex-col min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gradient-to-b from-purple-100 to-pink-100'}`}>
-      <header className={`px-4 lg:px-6 h-20 flex items-center ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
+    <div
+      className={`flex flex-col min-h-screen ${
+        darkMode
+          ? "bg-gray-900 text-white"
+          : "bg-gradient-to-b from-purple-100 to-pink-100"
+      }`}
+    >
+      <header
+        className={`px-4 lg:px-6 h-20 flex items-center ${
+          darkMode ? "bg-gray-800" : "bg-white"
+        } shadow-md`}
+      >
         <div className="container mx-auto flex items-center justify-between">
           <Link className="flex items-center justify-center" href="#">
             <Image
@@ -69,24 +52,36 @@ export default function LandingPage() {
               alt="Su Rótulo en 3D Logo"
               width={210}
               height={60}
-              className={`h-12 w-auto ${darkMode ? 'filter invert' : ''}`}
+              className={`h-12 w-auto ${darkMode ? "filter invert" : ""}`}
             />
           </Link>
           <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
             <Link
-              className={`text-sm ${darkMode ? 'text-gray-300 hover:text-white' : 'text-purple-600 hover:text-purple-950'} font-medium transition-colors`}
+              className={`text-sm ${
+                darkMode
+                  ? "text-gray-300 hover:text-white"
+                  : "text-purple-600 hover:text-purple-950"
+              } font-medium transition-colors`}
               href="#services"
             >
               Services
             </Link>
             <Link
-              className={`text-sm ${darkMode ? 'text-gray-300 hover:text-white' : 'text-purple-600 hover:text-purple-950'} font-medium transition-colors`}
+              className={`text-sm ${
+                darkMode
+                  ? "text-gray-300 hover:text-white"
+                  : "text-purple-600 hover:text-purple-950"
+              } font-medium transition-colors`}
               href="#gallery"
             >
               Our Work
             </Link>
             <Link
-              className={`text-sm ${darkMode ? 'text-gray-300 hover:text-white' : 'text-purple-600 hover:text-purple-950'} font-medium transition-colors`}
+              className={`text-sm ${
+                darkMode
+                  ? "text-gray-300 hover:text-white"
+                  : "text-purple-600 hover:text-purple-950"
+              } font-medium transition-colors`}
               href="#contact"
             >
               Contact
@@ -96,16 +91,30 @@ export default function LandingPage() {
               size="sm"
               variant="ghost"
               aria-label="Toggle dark mode"
-              className={`p-2 ${darkMode ? 'text-yellow-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-200'}`}
+              className={`p-2 ${
+                darkMode
+                  ? "text-yellow-200 hover:bg-gray-700"
+                  : "text-gray-800 hover:bg-gray-200"
+              }`}
             >
-              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {darkMode ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
             </Button>
           </nav>
         </div>
       </header>
 
       <main className="flex-1">
-        <section className={`w-full py-12 md:py-24 lg:py-32 xl:py-48 ${darkMode ? 'bg-gray-800' : 'bg-gradient-to-r from-purple-600 via-pink-500 to-red-500'} text-white`}>
+        <section
+          className={`w-full py-12 md:py-24 lg:py-32 xl:py-48 ${
+            darkMode
+              ? "bg-gray-800"
+              : "bg-gradient-to-r from-purple-600 via-pink-500 to-red-500"
+          } text-white`}
+        >
           <div className="container mx-auto px-4 md:px-6 max-w-screen-lg">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
@@ -113,68 +122,117 @@ export default function LandingPage() {
                   Elevate Your Brand with Premium 3D Signage
                 </h1>
                 <p className="mx-auto max-w-[700px] md:text-xl text-purple-100">
-                  Crafting eye-catching 3D signs and custom designs that make your business stand out. Quality, creativity, and impact - all in one place.
+                  Crafting eye-catching 3D signs and custom designs that make
+                  your business stand out. Quality, creativity, and impact - all
+                  in one place.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="gallery" className={`w-full py-12 md:py-24 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
-          <div className="container mx-auto px-4 md:px-6 max-w-screen-lg">
-            <h2 className={`text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-8 ${darkMode ? 'text-white' : 'text-purple-600'}`}>
-              Our Work Gallery
-            </h2>
-            <div 
-              ref={galleryRef}
-              className="overflow-hidden"
+        <section
+          id="gallery"
+          className={`w-full py-12 md:py-24 ${
+            darkMode ? "bg-gray-800" : "bg-white"
+          }`}
+        >
+          <h2
+            className={`text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-8 ${
+              darkMode ? "text-white" : "text-purple-600"
+            }`}
+          >
+            Our Work Gallery
+          </h2>
+          <div
+            className="w-full overflow-hidden"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <div
+              className="flex animate-scroll"
+              style={{
+                width: `${images.length * 100}%`,
+                animationDuration: `${images.length * 10}s`,
+                animationPlayState: isHovered ? "paused" : "running",
+              }}
             >
-              <div className="flex transition-transform duration-300 ease-linear" style={{ width: `${images.length * 100}%` }}>
-                {images.map((src, index) => (
-                  <div key={index} className="flex-shrink-0 w-full">
-                    <Image
-                      src={src}
-                      alt={`Gallery image ${index + 1}`}
-                      width={400}
-                      height={300}
-                      className="rounded-lg shadow-lg mx-auto"
-                    />
-                  </div>
-                ))}
-              </div>
+              {images.concat(images).map((src, index) => (
+                <div key={index} className="flex-shrink-0 w-screen px-2">
+                  <Image
+                    src={src}
+                    alt={`Gallery image ${(index % images.length) + 1}`}
+                    width={1200}
+                    height={800}
+                    className="rounded-lg shadow-lg object-cover w-full h-64"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         <section
           id="services"
-          className={`w-full py-12 md:py-24 lg:py-32 ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-b from-pink-100 to-purple-100'}`}
+          className={`w-full py-12 md:py-24 lg:py-32 ${
+            darkMode
+              ? "bg-gray-900"
+              : "bg-gradient-to-b from-pink-100 to-purple-100"
+          }`}
         >
           <div className="container mx-auto px-4 md:px-6 max-w-screen-lg">
-            <h2 className={`text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 ${darkMode ? 'text-white' : 'text-purple-600'}`}>
+            <h2
+              className={`text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 ${
+                darkMode ? "text-white" : "text-purple-600"
+              }`}
+            >
               Our Services
             </h2>
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
               <ServiceCard
-                icon={<SignpostIcon className={`h-10 w-10 ${darkMode ? 'text-purple-400' : 'text-purple-500'}`} />}
+                icon={
+                  <SignpostIcon
+                    className={`h-10 w-10 ${
+                      darkMode ? "text-purple-400" : "text-purple-500"
+                    }`}
+                  />
+                }
                 title="Signboards"
                 description="Eye-catching 3D signage solutions to make your brand pop."
                 darkMode={darkMode}
               />
               <ServiceCard
-                icon={<CubeIcon className={`h-10 w-10 ${darkMode ? 'text-pink-400' : 'text-pink-500'}`} />}
+                icon={
+                  <CubeIcon
+                    className={`h-10 w-10 ${
+                      darkMode ? "text-pink-400" : "text-pink-500"
+                    }`}
+                  />
+                }
                 title="Custom Designs"
                 description="Unique 3D designs tailored to your brand identity and needs."
                 darkMode={darkMode}
               />
               <ServiceCard
-                icon={<PenToolIcon className={`h-10 w-10 ${darkMode ? 'text-red-400' : 'text-red-500'}`} />}
+                icon={
+                  <PenToolIcon
+                    className={`h-10 w-10 ${
+                      darkMode ? "text-red-400" : "text-red-500"
+                    }`}
+                  />
+                }
                 title="3D Modeling"
                 description="Professional 3D modeling services for various applications."
                 darkMode={darkMode}
               />
               <ServiceCard
-                icon={<ShirtIcon className={`h-10 w-10 ${darkMode ? 'text-orange-400' : 'text-orange-500'}`} />}
+                icon={
+                  <ShirtIcon
+                    className={`h-10 w-10 ${
+                      darkMode ? "text-orange-400" : "text-orange-500"
+                    }`}
+                  />
+                }
                 title="Printed Products"
                 description="High-quality printed products for promotional needs."
                 darkMode={darkMode}
@@ -185,16 +243,27 @@ export default function LandingPage() {
 
         <section
           id="contact"
-          className={`w-full py-12 md:py-24 lg:py-32 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
+          className={`w-full py-12 md:py-24 lg:py-32 ${
+            darkMode ? "bg-gray-800" : "bg-white"
+          }`}
         >
           <div className="container mx-auto px-4 md:px-6 max-w-screen-lg">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className={`text-3xl font-bold tracking-tighter sm:text-5xl ${darkMode ? 'text-white' : 'text-purple-600'}`}>
+                <h2
+                  className={`text-3xl font-bold tracking-tighter sm:text-5xl ${
+                    darkMode ? "text-white" : "text-purple-600"
+                  }`}
+                >
                   Get in Touch
                 </h2>
-                <p className={`max-w-[900px] ${darkMode ? 'text-gray-300' : 'text-gray-500'} md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed`}>
-                  Ready to elevate your brand with 3D signage? Contact us for a free consultation and quote.
+                <p
+                  className={`max-w-[900px] ${
+                    darkMode ? "text-gray-300" : "text-gray-500"
+                  } md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed`}
+                >
+                  Ready to elevate your brand with 3D signage? Contact us for a
+                  free consultation and quote.
                 </p>
               </div>
 
@@ -229,20 +298,32 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className={`flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-purple-100'}`}>
+      <footer
+        className={`flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t ${
+          darkMode ? "bg-gray-800 border-gray-700" : "bg-purple-100"
+        }`}
+      >
         <div className="container mx-auto flex items-center justify-between max-w-screen-lg">
-          <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-purple-600'}`}>
+          <p
+            className={`text-xs ${
+              darkMode ? "text-gray-400" : "text-purple-600"
+            }`}
+          >
             © 2024 Su Rótulo en 3D. All rights reserved.
           </p>
           <nav className="sm:ml-auto flex gap-4 sm:gap-6">
             <Link
-              className={`text-xs hover:underline underline-offset-4 ${darkMode ? 'text-gray-400' : 'text-purple-600'}`}
+              className={`text-xs hover:underline underline-offset-4 ${
+                darkMode ? "text-gray-400" : "text-purple-600"
+              }`}
               href="#"
             >
               Terms of Service
             </Link>
             <Link
-              className={`text-xs hover:underline underline-offset-4 ${darkMode ? 'text-gray-400' : 'text-purple-600'}`}
+              className={`text-xs hover:underline underline-offset-4 ${
+                darkMode ? "text-gray-400" : "text-purple-600"
+              }`}
               href="#"
             >
               Privacy
@@ -263,10 +344,28 @@ type ServiceCardProps = {
 
 function ServiceCard({ icon, title, description, darkMode }: ServiceCardProps) {
   return (
-    <div className={`flex flex-col items-center space-y-4 text-center ${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-xl shadow-lg transition-transform hover:scale-105`}>
-      <div className={`p-4 ${darkMode ? 'bg-gray-700' : 'bg-purple-100'} rounded-full`}>{icon}</div>
-      <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-purple-500'}`}>{title}</h3>
-      <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>{description}</p>
+    <div
+      className={`flex flex-col items-center space-y-4 text-center ${
+        darkMode ? "bg-gray-800" : "bg-white"
+      } p-6 rounded-xl shadow-lg transition-transform hover:scale-105`}
+    >
+      <div
+        className={`p-4 ${
+          darkMode ? "bg-gray-700" : "bg-purple-100"
+        } rounded-full`}
+      >
+        {icon}
+      </div>
+      <h3
+        className={`text-xl font-bold ${
+          darkMode ? "text-white" : "text-purple-500"
+        }`}
+      >
+        {title}
+      </h3>
+      <p className={`text-sm ${darkMode ? "text-gray-300" : "text-gray-500"}`}>
+        {description}
+      </p>
     </div>
   );
 }
@@ -282,7 +381,11 @@ function SocialLink({ href, icon, label, darkMode }: SocialLinkProps) {
   return (
     <Link
       href={href}
-      className={`${darkMode ? 'text-gray-300 hover:text-white' : 'text-purple-600 hover:text-purple-700'} transition-colors`}
+      className={`${
+        darkMode
+          ? "text-gray-300 hover:text-white"
+          : "text-purple-600 hover:text-purple-700"
+      } transition-colors`}
     >
       {icon}
       <span className="sr-only">{label}</span>
@@ -290,7 +393,9 @@ function SocialLink({ href, icon, label, darkMode }: SocialLinkProps) {
   );
 }
 
-function SignpostIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+function SignpostIcon(
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
