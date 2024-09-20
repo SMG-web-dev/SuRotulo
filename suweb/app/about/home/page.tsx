@@ -11,7 +11,6 @@ export default function LandingPage() {
   const [darkMode, setDarkMode] = useState(false);
   const [images, setImages] = useState([]);
   const galleryRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     // In a real Next.js app, you'd typically fetch this data from an API
@@ -56,26 +55,6 @@ export default function LandingPage() {
             />
           </Link>
           <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
-            <Link
-              className={`text-sm ${
-                darkMode
-                  ? "text-gray-300 hover:text-white"
-                  : "text-purple-600 hover:text-purple-950"
-              } font-medium transition-colors`}
-              href="#services"
-            >
-              Services
-            </Link>
-            <Link
-              className={`text-sm ${
-                darkMode
-                  ? "text-gray-300 hover:text-white"
-                  : "text-purple-600 hover:text-purple-950"
-              } font-medium transition-colors`}
-              href="#gallery"
-            >
-              Our Work
-            </Link>
             <Link
               className={`text-sm ${
                 darkMode
@@ -145,30 +124,23 @@ export default function LandingPage() {
             Our Work Gallery
           </h2>
           <div
-            className="w-full overflow-hidden"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            className="flex animate-scroll"
+            style={{
+              width: `${images.length * 100}%`,
+              animationDuration: `${images.length * 10}s`,
+            }}
           >
-            <div
-              className="flex animate-scroll"
-              style={{
-                width: `${images.length * 100}%`,
-                animationDuration: `${images.length * 10}s`,
-                animationPlayState: isHovered ? "paused" : "running",
-              }}
-            >
-              {images.concat(images).map((src, index) => (
-                <div key={index} className="flex-shrink-0 w-screen px-2">
-                  <Image
-                    src={src}
-                    alt={`Gallery image ${(index % images.length) + 1}`}
-                    width={1200}
-                    height={800}
-                    className="rounded-lg shadow-lg object-cover w-full h-64"
-                  />
-                </div>
-              ))}
-            </div>
+            {images.concat(images).map((src, index) => (
+              <div key={index} className="flex-shrink-0 w-screen px-2">
+                <Image
+                  src={src}
+                  alt={`Gallery image ${(index % images.length) + 1}`}
+                  width={1200}
+                  height={800}
+                  className="rounded-lg shadow-lg object-cover w-full h-64"
+                />
+              </div>
+            ))}
           </div>
         </section>
 
