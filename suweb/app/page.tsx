@@ -10,7 +10,6 @@ import { JSX, SVGProps } from "react";
 export default function LandingPage() {
   const [darkMode, setDarkMode] = useState(false);
   const [images, setImages] = useState([]);
-  const galleryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // In a real Next.js app, you'd typically fetch this data from an API
