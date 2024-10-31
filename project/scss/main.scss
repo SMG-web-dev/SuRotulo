@@ -10,10 +10,10 @@
 
 /* Estilos generales */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'GeistVF', sans-serif;
   margin: 0;
   padding: 0;
-  background: color-fondo-oscuro;
+  background-color: $color-fondo-oscuro;
 }
 
 /* Mobile First */
@@ -39,10 +39,6 @@ body {
   
 
   button, a {
-    transition: background-color 0.3s ease;
-  
-    &:hover {
-      background-color: $color-secundario;
-    }
+    transition: all 0.3s ease;
   }
   

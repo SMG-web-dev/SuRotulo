@@ -1,8 +1,9 @@
 footer {
-    background-color: #333;
+    background-color: $color-fondo-oscuro;
     color: #fff;
     padding: $spacing;
     text-align: center;
+    box-shadow: 1px 1px 1px 10px black;
   
     form {
       margin-bottom: $spacing;
@@ -10,6 +11,12 @@ footer {
         padding: 0.5rem;
         border: none;
         border-radius: 5px;
+      }
+    }
+
+    button {
+      &:hover {
+        background-color: $color-primario;
       }
     }
   

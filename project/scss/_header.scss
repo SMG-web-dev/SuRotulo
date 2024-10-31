@@ -3,11 +3,13 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: $spacing;
-    background-color: $color-primario;
+    background-color: $color-fondo-oscuro;
+    box-shadow: 1px 0px 0px 10px black;
+
   
     .logo {
-      font-size: 1.5rem;
-      color: #fff;
+      max-width: 10em;
+      max-height: 5em;
     }
   
     nav a {

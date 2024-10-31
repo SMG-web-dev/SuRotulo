@@ -55,11 +55,12 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #7c34db;
+  background-color: #230b42;
+  box-shadow: 1px 0px 0px 10px black;
 }
 header .logo {
-  font-size: 1.5rem;
-  color: #fff;
+  max-width: 10em;
+  max-height: 5em;
 }
 header nav a {
   color: #fff;
@@ -71,10 +72,12 @@ header nav a:hover {
 }
 
 footer {
-  background-color: #333;
+  background-color: #230b42;
   color: #fff;
   padding: 1rem;
   text-align: center;
+  margin-bottom: 1px;
+  box-shadow: 1px 1px 1px 10px black;
 }
 footer form {
   margin-bottom: 1rem;
@@ -83,6 +86,9 @@ footer form input[type=email] {
   padding: 0.5rem;
   border: none;
   border-radius: 5px;
+}
+footer button:hover {
+  background-color: #7c34db;
 }
 footer .redes-sociales a {
   color: #fff;
@@ -167,6 +173,7 @@ footer .redes-sociales a:hover {
 
 .contacto {
   padding: 1rem;
+  background-color: color-fondo-oscuro;
 }
 .contacto h1 {
   font-size: 2rem;
@@ -207,15 +214,15 @@ footer .redes-sociales a:hover {
   transition: background-color 0.3s ease;
 }
 .contacto form button:hover {
-  background-color: rgb(142, 72, 255);
+  background-color: black;
 }
 
 /* Estilos generales */
 body {
-  font-family: "Arial", sans-serif;
+  font-family: "GeistVF", sans-serif;
   margin: 0;
   padding: 0;
-  background: color-fondo-oscuro;
+  background-color: #230b42;
 }
 
 /* Mobile First */
@@ -238,10 +245,7 @@ body {
   }
 }
 button, a {
-  transition: background-color 0.3s ease;
-}
-button:hover, a:hover {
-  background-color: rgb(142, 72, 255);
+  transition: all 0.3s ease;
 }
 
 /*# sourceMappingURL=main.css.map */

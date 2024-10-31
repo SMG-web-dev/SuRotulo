@@ -1,5 +1,6 @@
 .contacto {
   padding: $spacing;
+  background-color: color-fondo-oscuro;
 
   h1 {
     font-size: 2rem;
@@ -43,7 +44,7 @@
       transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: $color-secundario;
+        background-color: black;
       }
     }
   }
