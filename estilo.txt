@@ -30,8 +30,8 @@ o como fondo para diseños invertidos.
 _____________________________
 |======| Tipografías |======|
 
-	=>	GeistMonoVF.woff
-	=>	GeistVf.woff
+	=>	GeistMonoVF
+	=>	GeistVf
 
 
 

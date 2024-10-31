@@ -1,0 +1,247 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-size: 100%;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@font-face {
+  font-family: "GeistVF";
+  src: url("../fonts/GeistVF.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GeistVFmono";
+  src: url("../fonts/GeistVFmono.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: "GeistVF", sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: "GeistVFmono", monospace;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #7c34db;
+}
+header .logo {
+  font-size: 1.5rem;
+  color: #fff;
+}
+header nav a {
+  color: #fff;
+  margin-left: 1rem;
+  text-decoration: none;
+}
+header nav a:hover {
+  color: rgb(142, 72, 255);
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+footer form {
+  margin-bottom: 1rem;
+}
+footer form input[type=email] {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+}
+footer .redes-sociales a {
+  color: #fff;
+  margin: 0 1rem;
+}
+footer .redes-sociales a:hover {
+  color: rgb(142, 72, 255);
+}
+
+.articulos-principales {
+  padding: 1rem;
+}
+.articulos-principales article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  background-color: #7c34db;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+.articulos-principales article:hover {
+  transform: translateY(-5px);
+}
+.articulos-principales article img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1rem;
+}
+.articulos-principales article h2 {
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.articulos-principales article p {
+  color: #eee;
+  font-size: 1rem;
+}
+@media (min-width: 768px) {
+  .articulos-principales {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+@media (min-width: 1024px) {
+  .articulos-principales {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.productos {
+  padding: 1rem;
+}
+.productos h1 {
+  color: #7c34db;
+}
+.productos article {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgb(142, 72, 255);
+}
+.productos article h2 {
+  font-size: 1.5rem;
+}
+
+.servicios {
+  padding: 1rem;
+}
+.servicios h1 {
+  color: #7c34db;
+}
+.servicios article {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgb(142, 72, 255);
+}
+.servicios article h2 {
+  font-size: 1.5rem;
+}
+
+.contacto {
+  padding: 1rem;
+}
+.contacto h1 {
+  font-size: 2rem;
+  color: #7c34db;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.contacto form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contacto form label {
+  font-family: "GeistVFmono", monospace;
+  font-size: 1rem;
+  color: #333;
+}
+.contacto form input, .contacto form textarea {
+  padding: 0.75rem;
+  border: 1px solid rgb(142, 72, 255);
+  border-radius: 5px;
+  font-family: "GeistVF", sans-serif;
+  font-size: 1rem;
+  resize: vertical;
+}
+.contacto form button {
+  align-self: center;
+  background-color: #7c34db;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "GeistVF", sans-serif;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+.contacto form button:hover {
+  background-color: rgb(142, 72, 255);
+}
+
+/* Estilos generales */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: color-fondo-oscuro;
+}
+
+/* Mobile First */
+body {
+  font-size: 1rem;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  body {
+    font-size: 1.125rem;
+  }
+}
+/* Desktop */
+@media (min-width: 1024px) {
+  body {
+    font-size: 1.25rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+button, a {
+  transition: background-color 0.3s ease;
+}
+button:hover, a:hover {
+  background-color: rgb(142, 72, 255);
+}
+
+/*# sourceMappingURL=main.css.map */

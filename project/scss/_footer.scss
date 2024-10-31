@@ -1,0 +1,25 @@
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: $spacing;
+    text-align: center;
+  
+    form {
+      margin-bottom: $spacing;
+      input[type="email"] {
+        padding: 0.5rem;
+        border: none;
+        border-radius: 5px;
+      }
+    }
+  
+    .redes-sociales a {
+      color: #fff;
+      margin: 0 $spacing;
+  
+      &:hover {
+        color: $color-secundario;
+      }
+    }
+  }
+  

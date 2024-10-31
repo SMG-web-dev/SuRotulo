@@ -1,0 +1,23 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing;
+    background-color: $color-primario;
+  
+    .logo {
+      font-size: 1.5rem;
+      color: #fff;
+    }
+  
+    nav a {
+      color: #fff;
+      margin-left: $spacing;
+      text-decoration: none;
+  
+      &:hover {
+        color: $color-secundario;
+      }
+    }
+  }
+  

@@ -1,0 +1,48 @@
+@import 'reset';
+@import 'variables';
+@import 'tipografia';
+@import 'header';
+@import 'footer';
+@import 'home';
+@import 'productos';
+@import 'servicios';
+@import 'contacto';
+
+/* Estilos generales */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: color-fondo-oscuro;
+}
+
+/* Mobile First */
+body {
+    font-size: 1rem;
+  }
+  
+  /* Tablet */
+  @media (min-width: 768px) {
+    body {
+      font-size: 1.125rem;
+    }
+  }
+  
+  /* Desktop */
+  @media (min-width: 1024px) {
+    body {
+      font-size: 1.25rem;
+      max-width: $max-width;
+      margin: 0 auto;
+    }
+  }
+  
+
+  button, a {
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: $color-secundario;
+    }
+  }
+  
