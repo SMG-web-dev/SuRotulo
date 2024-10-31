@@ -1,0 +1,20 @@
+project/
+│
+├── index.html                  // Página de Inicio
+├── productos.html              // Página de Productos
+├── servicios.html              // Página de Servicios
+├── contacto.html               // Página de Contacto
+│
+├── scss/
+│   ├── main.scss               // Archivo principal SCSS
+│   ├── _variables.scss         // Variables de colores, tipografías
+│   ├── _reset.scss             // Reseteo de estilos
+│   ├── _header.scss            // Estilos del header
+│   ├── _footer.scss            // Estilos del footer
+│   ├── _home.scss              // Estilos específicos de la página de Inicio
+│   ├── _productos.scss         // Estilos de la página de Productos
+│   ├── _servicios.scss         // Estilos de la página de Servicios
+│   └── _contacto.scss          // Estilos de la página de Contacto
+│
+└── css/
+    └── main.css                // Archivo CSS compilado
