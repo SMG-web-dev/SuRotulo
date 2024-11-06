@@ -1,0 +1,19 @@
+.hero {
+  background-color: $fondo-hero;
+
+  .a:nth-child(1) {
+    color: $boton-primario-text;
+    background-color: $boton-primario-fondo;
+    &:hover {
+      background-color: $boton-primario-hover;
+    }
+  }
+
+  .a:nth-child(2) {
+    color: $boton-secundario-text;
+    background-color: $boton-secundario-fondo;
+    &:hover {
+      background-color: $boton-secundario-hover;
+    }
+  }
+}

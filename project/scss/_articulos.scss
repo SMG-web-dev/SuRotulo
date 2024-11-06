@@ -1,13 +1,8 @@
-.servicios {
+.articulos {
   padding: $spacing;
 
-  h1 {
-    color: $primario;
-  }
-
   article {
-    color: $texto-claro;
-    background-color: $primario;
+    color: $texto-claro-gris;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,13 +12,29 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: $spacing;
     transition: transform 0.3s ease;
+    background-color: $fondo-cards;
     &:hover {
       transform: translateY(-5px);
     }
+
+    img {
+      width: max-content;
+      height: 15rem;
+      margin-bottom: $spacing;
+    }
+
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
+      color: $texto-claro;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: $texto-claro;
+      font-size: 1rem;
     }
   }
+
   @media (min-width: 768px) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

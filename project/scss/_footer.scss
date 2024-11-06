@@ -1,32 +1,46 @@
 footer {
-    background-color: $color-fondo-oscuro;
-    color: #fff;
-    padding: $spacing;
-    text-align: center;
-    box-shadow: 1px 1px 1px 10px black;
-  
-    form {
-      margin-bottom: $spacing;
-      input[type="email"] {
-        padding: 0.5rem;
-        border: none;
-        border-radius: 5px;
-      }
-    }
+  color: $texto-claro-gris;
+  padding: $spacing;
+  text-align: center;
+  background-color: $fondo-header-footer;
 
-    button {
-      &:hover {
-        background-color: $color-primario;
-      }
-    }
-  
-    .redes-sociales a {
-      color: #fff;
-      margin: 0 $spacing;
-  
-      &:hover {
-        color: $color-secundario;
+  form {
+    margin-bottom: $spacing;
+    input[type="email"] {
+      background-color: $fondo-oscuro;
+      color: $texto-claro-gris;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border-width: 1px;
+      border-color: $stroke-gris;
+      &:focus {
+        border-color: $stroke-focus;
       }
     }
   }
-  
+
+  button {
+    margin: 1rem;
+    width: 15rem;
+    height: 3rem;
+    border-radius: 5px;
+    color: $boton-primario-text;
+    background-color: $boton-primario-fondo;
+    &:hover {
+      background-color: $boton-primario-hover;
+    }
+  }
+
+  .redes-sociales a {
+    color: $primario;
+    margin: 0 $spacing;
+
+    &:hover {
+      color: $texto-hover;
+    }
+  }
+
+  .redes-sociales svg {
+    color: $primario;
+  }
+}

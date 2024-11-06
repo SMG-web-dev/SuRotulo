@@ -1,22 +1,23 @@
 @font-face {
-    font-family: 'GeistVF';
-    src: url('../fonts/GeistVF.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'GeistVFmono';
-    src: url('../fonts/GeistVFmono.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  body {
-    font-family: 'GeistVF', sans-serif;
-  }
-  
-  h1, h2, h3 {
-    font-family: 'GeistVFmono', monospace;
-  }
-  
+  font-family: "GeistVF";
+  src: url("../fonts/GeistVF.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeistVFmono";
+  src: url("../fonts/GeistVFmono.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "GeistVF", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "GeistVFmono", monospace;
+}

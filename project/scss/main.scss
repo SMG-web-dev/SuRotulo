@@ -1,44 +1,38 @@
-@import 'reset';
-@import 'variables';
-@import 'tipografia';
-@import 'header';
-@import 'footer';
-@import 'home';
-@import 'productos';
-@import 'servicios';
-@import 'contacto';
+@import "reset";
+@import "variables";
+@import "tipografia";
+@import "header";
+@import "footer";
+@import "articulos";
+@import "servicios";
+@import "contacto";
 
 /* Estilos generales */
 body {
-  font-family: 'GeistVF', sans-serif;
+  font-family: "GeistVF", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: $color-fondo-oscuro;
+  background-color: $fondo-oscuro;
+  font-size: 1rem;
 }
 
-/* Mobile First */
-body {
-    font-size: 1rem;
+/* Tablet */
+@media (min-width: 768px) {
+  body {
+    font-size: 1.125rem;
   }
-  
-  /* Tablet */
-  @media (min-width: 768px) {
-    body {
-      font-size: 1.125rem;
-    }
-  }
-  
-  /* Desktop */
-  @media (min-width: 1024px) {
-    body {
-      font-size: 1.25rem;
-      max-width: $max-width;
-      margin: 0 auto;
-    }
-  }
-  
+}
 
-  button, a {
-    transition: all 0.3s ease;
+/* Desktop */
+@media (min-width: 1024px) {
+  body {
+    font-size: 1.25rem;
+    max-width: 100%;
+    margin: 0 auto;
   }
-  
+}
+
+button,
+a {
+  transition: all 0.3s ease;
+}

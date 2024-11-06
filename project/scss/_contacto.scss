@@ -1,10 +1,10 @@
 .contacto {
   padding: $spacing;
-  background-color: color-fondo-oscuro;
+  background-color: $fondo-oscuro;
 
   h1 {
     font-size: 2rem;
-    color: $color-primario;
+    color: $primario;
     text-align: center;
     margin-bottom: $spacing;
   }
@@ -17,34 +17,42 @@
     gap: $spacing;
 
     label {
-      font-family: 'GeistVFmono', monospace;
+      font-family: "GeistVFmono", monospace;
       font-size: 1rem;
-      color: $color-texto;
+      color: $primario;
     }
 
-    input, textarea {
+    input,
+    textarea {
+      background-color: $fondo-oscuro;
+      color: $texto-claro-gris;
       padding: 0.75rem;
-      border: 1px solid $color-secundario;
       border-radius: 5px;
-      font-family: 'GeistVF', sans-serif;
+      border-width: 1px;
+      border-color: $stroke-gris;
+      font-family: "GeistVF", sans-serif;
       font-size: 1rem;
       resize: vertical;
+
+      &:focus {
+        border-color: solid $stroke-focus;
+      }
     }
 
     button {
       align-self: center;
-      background-color: $color-primario;
-      color: #fff;
+      background-color: $primario;
+      color: $boton-primario-text;
       padding: 0.75rem 1.5rem;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-family: 'GeistVF', sans-serif;
+      font-family: "GeistVF", sans-serif;
       font-size: 1.1rem;
       transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: black;
+        background-color: $boton-primario-hover;
       }
     }
   }

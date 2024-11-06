@@ -1,25 +1,23 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: $spacing;
-    background-color: $color-fondo-oscuro;
-    box-shadow: 1px 0px 0px 10px black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing;
+  background-color: $fondo-header-footer;
+  border-bottom: 1px $fondo-cards;
+  width: 100%;
+  .logo {
+    max-width: 10em;
+    max-height: 5em;
+  }
 
-  
-    .logo {
-      max-width: 10em;
-      max-height: 5em;
-    }
-  
-    nav a {
-      color: #fff;
-      margin-left: $spacing;
-      text-decoration: none;
-  
-      &:hover {
-        color: $color-secundario;
-      }
+  nav a {
+    color: $primario;
+    margin-left: $spacing;
+    text-decoration: none;
+
+    &:hover {
+      color: $texto-hover;
     }
   }
-  
+}

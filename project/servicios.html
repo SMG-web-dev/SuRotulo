@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Servicios - Mi Sitio Web</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css" />
     <link rel="icon" type="image/svg+xml" href="public/favicon.ico" />
-</head>
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <div class="logo"><img src="public/logoLight.png"" alt=" Logo"></div>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="productos.html">Productos</a>
-            <a href="servicios.html">Servicios</a>
-            <a href="contacto.html">Contacto</a>
-        </nav>
+      <div class="logo"><img src="public/logoLight.png"" alt=" Logo"></div>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
     </header>
 
     <main>
-        <section class="servicios">
-            <h1>Nuestros Servicios</h1>
-            <article>
-                <h2>Servicio 1</h2>
-                <p>Descripción del servicio 1.</p>
-            </article>
-            <!-- Otros servicios -->
-        </section>
+      <section class="servicios">
+        <article>
+          <img
+            src="https://img.webme.com/pic/s/surotulo/LED.jpg"
+            alt="Icono 1"
+          />
+          <h2>Corpóreos LED</h2>
+          <p>
+            Corpóreos iluminados de bajo coste y gran impacto visual para
+            interiores.
+          </p>
+        </article>
+        <!-- Otros servicios -->
+      </section>
     </main>
 
     <footer>
-        <!-- Contenido del footer (suscripción, redes sociales, contacto) -->
+      <form action="#">
+        <label for="email">Suscríbete al boletín:</label>
+        <input type="email" id="email" placeholder="Correo electrónico" />
+        <button type="submit">Suscribirse</button>
+      </form>
+      <div class="redes-sociales">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+      </div>
+      <div class="contacto">Contacto: info@misitio.com</div>
     </footer>
-
-</body>
-
+  </body>
 </html>
