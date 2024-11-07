@@ -1,9 +1,11 @@
 // Variables de colores
 $primario: #9333ea;
+$primario-filter: invert(33%) sepia(87%) saturate(7450%) hue-rotate(255deg)
+  brightness(93%) contrast(102%);
 
 // Botones primarios
 $boton-primario-fondo: #9333ea;
-$boton-primario-hover: #c084fc;
+$boton-primario-hover: #a855f7;
 $boton-primario-text: #ffffff;
 
 // Botones secundarios
@@ -15,7 +17,8 @@ $boton-secundario-text: #f2e6fe;
 $texto-claro: #ffffff;
 $texto-oscuro: #000000;
 $texto-claro-morado: #f2e6fe;
-$texto-claro-gris: #d1d5db;
+$texto-claro-gris: #a3a3a3;
+$texto-oscuro-gris: #737373;
 $texto-hover: #a977df;
 
 // Fondos
@@ -27,8 +30,11 @@ $fondo-header-footer: #111827;
 
 // Strokes
 $stroke-gris: #bdbcdb;
-$stroke-focus: #f845fc;
+$stroke-focus: #9333ea;
+$stroke-hover: #a855f7;
 
 // Medidas
 $spacing: 1rem;
 $max-width: 1200px;
+$desktop: 1024px;
+$tablet: 768px;

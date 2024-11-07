@@ -1,19 +1,52 @@
+// Hero Section
 .hero {
   background-color: $fondo-hero;
+  padding: $spacing * 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
-  .a:nth-child(1) {
-    color: $boton-primario-text;
-    background-color: $boton-primario-fondo;
-    &:hover {
-      background-color: $boton-primario-hover;
-    }
+  h1 {
+    font-size: 2.5rem;
+    color: $texto-claro;
+    margin-bottom: $spacing;
   }
 
-  .a:nth-child(2) {
-    color: $boton-secundario-text;
-    background-color: $boton-secundario-fondo;
-    &:hover {
-      background-color: $boton-secundario-hover;
+  p {
+    font-size: 1.25rem;
+    color: $texto-claro;
+    margin-bottom: $spacing * 2;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: $spacing;
+
+    .primary-btn,
+    .secondary-btn {
+      padding: $spacing $spacing * 2;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .primary-btn {
+      color: $boton-primario-text;
+      background-color: $boton-primario-fondo;
+      &:hover {
+        background-color: $boton-primario-hover;
+      }
+    }
+
+    .secondary-btn {
+      color: $boton-secundario-text;
+      background-color: $boton-secundario-fondo;
+      &:hover {
+        background-color: $boton-secundario-hover;
+      }
     }
   }
 }

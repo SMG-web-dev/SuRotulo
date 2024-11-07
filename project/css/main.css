@@ -40,13 +40,13 @@ a {
 
 @font-face {
   font-family: "GeistVF";
-  src: url("../fonts/GeistVF.woff") format("woff");
+  src: url("/fonts/GeistVF.otf") format("otf");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "GeistVFmono";
-  src: url("../fonts/GeistVFmono.woff") format("woff");
+  src: url("/fonts/GeistVFmono.otf") format("otf");
   font-weight: normal;
   font-style: normal;
 }
@@ -66,12 +66,15 @@ header {
   align-items: center;
   padding: 1rem;
   background-color: #111827;
-  border-bottom: 1px #374151;
+  border-bottom: 1px solid #374151;
   width: 100%;
 }
-header .logo {
+header .logo img {
   max-width: 10em;
   max-height: 5em;
+}
+header nav {
+  display: none;
 }
 header nav a {
   color: #9333ea;
@@ -81,54 +84,197 @@ header nav a {
 header nav a:hover {
   color: #a977df;
 }
+header .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+header .header-actions button img {
+  width: 24px;
+  height: 24px;
+  filter: invert(33%) sepia(87%) saturate(7450%) hue-rotate(255deg) brightness(93%) contrast(102%);
+}
+header .header-actions .theme-toggle,
+header .header-actions .menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  header nav {
+    display: flex;
+  }
+  header .header-actions .menu-toggle {
+    display: none;
+  }
+}
+@media (min-width: 1024px) {
+  header nav {
+    display: flex;
+  }
+  header .header-actions .menu-toggle {
+    display: none;
+  }
+}
 
 footer {
-  color: #d1d5db;
-  padding: 1rem;
-  text-align: center;
   background-color: #111827;
+  color: #a3a3a3;
+  padding: 2rem 1.5rem;
+  font-size: 0.875rem;
 }
-footer form {
+footer h3,
+footer h4 {
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
   margin-bottom: 1rem;
 }
-footer form input[type=email] {
-  background-color: #1f2937;
-  color: #d1d5db;
-  padding: 0.5rem;
-  border-radius: 5px;
-  border-width: 1px;
-  border-color: #bdbcdb;
+footer .brand {
+  margin-bottom: 2rem;
 }
-footer form input[type=email]:focus {
-  border-color: #f845fc;
+footer .brand h3 {
+  font-size: 1.25rem;
 }
-footer button {
-  margin: 1rem;
-  width: 15rem;
-  height: 3rem;
-  border-radius: 5px;
+footer .brand p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #a3a3a3;
+  margin-bottom: 1rem;
+}
+footer .brand .social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+footer .brand .social-links a svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: #9333ea;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+footer .brand .social-links a:hover svg {
+  stroke: #a855f7;
+}
+footer .quick-links {
+  margin-bottom: 2rem;
+}
+footer .quick-links nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+footer .quick-links nav a {
+  color: #a3a3a3;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+footer .quick-links nav a:hover {
   color: #ffffff;
+}
+footer .contact {
+  margin-bottom: 2rem;
+}
+footer .contact .contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+footer .contact .contact-info .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+footer .contact .contact-info .contact-item svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: #9333ea;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+footer .contact .contact-info .contact-item span {
+  color: #a3a3a3;
+  font-size: 0.875rem;
+}
+footer .newsletter {
+  margin-bottom: 2rem;
+}
+footer .newsletter p {
+  color: #a3a3a3;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+footer .newsletter form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+footer .newsletter form input[type=email] {
+  background-color: transparent;
+  border: 1px solid #404040;
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  color: white;
+  font-size: 0.875rem;
+}
+footer .newsletter form input[type=email]::placeholder {
+  color: #737373;
+}
+footer .newsletter form input[type=email]:focus {
+  outline: none;
+  border-color: #9333ea;
+}
+footer .newsletter form button {
   background-color: #9333ea;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
-footer button:hover {
-  background-color: #c084fc;
+footer .newsletter form button:hover {
+  background-color: #a855f7;
 }
-footer .redes-sociales a {
-  color: #9333ea;
-  margin: 0 1rem;
+footer .copyright {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid #333;
 }
-footer .redes-sociales a:hover {
-  color: #a977df;
-}
-footer .redes-sociales svg {
-  color: #9333ea;
+footer .copyright p {
+  color: #666;
+  font-size: 0.75rem;
 }
 
+@media (min-width: 768px) {
+  footer .footer-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+@media (min-width: 1024px) {
+  footer .footer-content {
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  }
+}
 .articulos {
-  padding: 1rem;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
 }
 .articulos article {
-  color: #d1d5db;
+  color: #a3a3a3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,32 +282,29 @@ footer .redes-sociales svg {
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  transition: transform 0.3s ease;
   background-color: #374151;
+  transition: transform 0.3s ease;
 }
 .articulos article:hover {
   transform: translateY(-5px);
 }
 .articulos article img {
-  width: max-content;
-  height: 15rem;
+  width: 8rem;
+  height: 8rem;
   margin-bottom: 1rem;
 }
 .articulos article h2 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #ffffff;
   margin-bottom: 0.5rem;
 }
 .articulos article p {
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 1.125rem;
 }
 @media (min-width: 768px) {
   .articulos {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
   }
 }
 @media (min-width: 1024px) {
@@ -233,7 +376,7 @@ footer .redes-sociales svg {
 .contacto form input,
 .contacto form textarea {
   background-color: #1f2937;
-  color: #d1d5db;
+  color: #a3a3a3;
   padding: 0.75rem;
   border-radius: 5px;
   border-width: 1px;
@@ -244,7 +387,7 @@ footer .redes-sociales svg {
 }
 .contacto form input:focus,
 .contacto form textarea:focus {
-  border-color: solid #f845fc;
+  border-color: solid #9333ea;
 }
 .contacto form button {
   align-self: center;
@@ -259,25 +402,20 @@ footer .redes-sociales svg {
   transition: background-color 0.3s ease;
 }
 .contacto form button:hover {
-  background-color: #c084fc;
+  background-color: #a855f7;
 }
 
-/* Estilos generales */
 body {
   font-family: "GeistVF", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #1f2937;
   font-size: 1rem;
 }
-
-/* Tablet */
 @media (min-width: 768px) {
   body {
     font-size: 1.125rem;
   }
 }
-/* Desktop */
 @media (min-width: 1024px) {
   body {
     font-size: 1.25rem;
@@ -285,6 +423,7 @@ body {
     margin: 0 auto;
   }
 }
+
 button,
 a {
   transition: all 0.3s ease;
