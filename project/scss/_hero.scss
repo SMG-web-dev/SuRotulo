@@ -1,51 +1,83 @@
-// Hero Section
 .hero {
-  background-color: $fondo-hero;
+  min-height: 100vh;
   padding: $spacing * 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  align-items: flex-start;
+  background: linear-gradient(
+    145deg,
+    $fondo-hero 0%,
+    darken($fondo-hero, 15%) 100%
+  );
+  text-align: left;
+
+  @media (max-width: $tablet) {
+    align-items: center;
+    text-align: center;
+    padding: $spacing;
+  }
 
   h1 {
-    font-size: 2.5rem;
     color: $texto-claro;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
     margin-bottom: $spacing;
+    max-width: 12ch;
   }
 
   p {
-    font-size: 1.25rem;
-    color: $texto-claro;
+    color: rgba($texto-claro-morado, 0.9);
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    line-height: 1.5;
     margin-bottom: $spacing * 2;
+    max-width: 40ch;
   }
 
   .buttons {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     gap: $spacing;
+    width: 100%;
+    max-width: 300px;
 
     .primary-btn,
     .secondary-btn {
-      padding: $spacing $spacing * 2;
+      width: 100%;
+      padding: $spacing $spacing * 1.5;
       border-radius: 8px;
-      font-size: 1rem;
-      font-weight: bold;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      text-align: center;
     }
 
     .primary-btn {
-      color: $boton-primario-text;
       background-color: $boton-primario-fondo;
+      color: $boton-primario-text;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: $spacing / 2;
+
+      &::after {
+        content: "→";
+        font-size: 1.2em;
+      }
+
       &:hover {
         background-color: $boton-primario-hover;
       }
     }
 
     .secondary-btn {
-      color: $boton-secundario-text;
-      background-color: $boton-secundario-fondo;
+      background-color: rgba($texto-claro, 0.1);
+      color: $texto-claro;
+      backdrop-filter: blur(4px);
+
       &:hover {
-        background-color: $boton-secundario-hover;
+        background-color: rgba($texto-claro, 0.15);
       }
     }
   }
