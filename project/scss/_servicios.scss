@@ -1,36 +1,107 @@
-.servicios {
-  padding: $spacing;
+/* _servicios.scss */
+.servicios-hero {
+  background-color: $fondo-oscuro;
+  color: $texto-claro;
+  padding: $spacing * 2;
+  text-align: center;
 
   h1 {
-    color: $primario;
-  }
-
-  article {
-    color: $texto-claro;
-    background-color: $primario;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: $spacing;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 2rem;
     margin-bottom: $spacing;
-    transition: transform 0.3s ease;
-    &:hover {
-      transform: translateY(-5px);
-    }
-    h2 {
-      font-size: 1.5rem;
-    }
-  }
-  @media (min-width: 768px) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: $spacing;
   }
 
-  @media (min-width: 1024px) {
+  p {
+    color: $texto-claro-gris;
+  }
+}
+
+.servicios-grid {
+  background-color: $fondo-oscuro;
+  padding: $spacing;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing;
+  max-width: $max-width;
+  margin: 0 auto;
+
+  @media (min-width: $tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+  }
+
+  @media (min-width: $desktop) {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.servicio-card {
+  background-color: $fondo-cards;
+  border-radius: 8px;
+  padding: $spacing * 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .servicio-icon {
+    background-color: $primario;
+    padding: $spacing;
+    border-radius: 12px;
+    margin-bottom: $spacing;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      stroke: $texto-claro;
+    }
+  }
+
+  h2 {
+    color: $texto-claro;
+    font-size: 1.25rem;
+    margin-bottom: $spacing * 0.5;
+  }
+
+  p {
+    color: $texto-claro-gris;
+    margin: 0;
+  }
+}
+
+.contacto-cta {
+  background-color: $primario;
+  color: $texto-claro;
+  text-align: center;
+  padding: $spacing * 3 $spacing;
+  margin-top: $spacing * 3;
+  border-radius: 8px;
+  margin: $spacing * 2;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: $spacing;
+  }
+
+  p {
+    margin-bottom: $spacing * 2;
+  }
+
+  .btn-primary {
+    background-color: $texto-claro;
+    color: $primario;
+    padding: $spacing $spacing * 2;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $texto-claro-morado;
+    }
   }
 }

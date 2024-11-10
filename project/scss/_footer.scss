@@ -17,6 +17,12 @@ footer {
   .brand {
     margin-bottom: 2rem;
 
+    .logo img {
+      max-width: 10em;
+      max-height: 5em;
+      margin-bottom: $spacing;
+    }
+
     h3 {
       font-size: 1.25rem;
     }
