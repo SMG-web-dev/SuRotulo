@@ -22,7 +22,7 @@ img,
 picture,
 video,
 canvas,
-svg {
+img {
   display: block;
   max-width: 100%;
 }
@@ -50,6 +50,13 @@ a {
   text-align: left;
 }
 @media (max-width: 768px) {
+  .hero {
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+  }
+}
+@media (max-width: 4000px) {
   .hero {
     align-items: center;
     text-align: center;
@@ -199,7 +206,7 @@ header .header-actions button:hover {
 header .header-actions button img {
   width: 24px;
   height: 24px;
-  filter: invert(33%) sepia(87%) saturate(7450%) hue-rotate(255deg) brightness(93%) contrast(102%);
+  filter: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg) brightness(100%) contrast(100%);
 }
 header .header-actions .theme-toggle,
 header .header-actions .menu-toggle {
@@ -266,7 +273,7 @@ footer {
 }
 footer h3,
 footer h4 {
-  color: white;
+  color: #ffffff;
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -293,17 +300,13 @@ footer .brand .social-links {
   gap: 1rem;
   margin-top: 0.5rem;
 }
-footer .brand .social-links a svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  fill: none;
-  stroke: #9333ea;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+footer .brand .social-links a img {
+  filter: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg) brightness(100%) contrast(30%);
+  transition: 0.5s;
 }
-footer .brand .social-links a:hover svg {
-  stroke: #a855f7;
+footer .brand .social-links a:hover img {
+  filter: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg) brightness(100%) contrast(100%);
+  transition: 0.5s;
 }
 footer .quick-links {
   margin-bottom: 2rem;
@@ -324,6 +327,9 @@ footer .quick-links nav a:hover {
 footer .contact {
   margin-bottom: 2rem;
 }
+footer .contact img {
+  filter: invert(22%) sepia(77%) saturate(6201%) hue-rotate(269deg) brightness(110%) contrast(100%);
+}
 footer .contact .contact-info {
   display: flex;
   flex-direction: column;
@@ -333,15 +339,6 @@ footer .contact .contact-info .contact-item {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-}
-footer .contact .contact-info .contact-item svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  fill: none;
-  stroke: #9333ea;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 footer .contact .contact-info .contact-item span {
   color: #a3a3a3;
@@ -367,6 +364,7 @@ footer .newsletter form input[type=email] {
   padding: 0.75rem 1rem;
   color: white;
   font-size: 0.875rem;
+  transition: 0.5s;
 }
 footer .newsletter form input[type=email]::placeholder {
   color: #737373;
@@ -374,6 +372,7 @@ footer .newsletter form input[type=email]::placeholder {
 footer .newsletter form input[type=email]:focus {
   outline: none;
   border-color: #9333ea;
+  transition: 0.5s;
 }
 footer .newsletter form button {
   background-color: #9333ea;
@@ -445,7 +444,7 @@ footer .copyright p {
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  filter: invert(33%) sepia(87%) saturate(7450%) hue-rotate(255deg) brightness(93%) contrast(102%);
+  filter: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg) brightness(100%) contrast(100%);
 }
 .productos-hero .search-box input {
   width: 100%;
@@ -454,8 +453,10 @@ footer .copyright p {
   border: 1px solid #bdbcdb;
   background-color: #374151;
   color: #ffffff;
+  transition: 0.5s;
 }
 .productos-hero .search-box input:focus {
+  transition: 0.5s;
   outline: none;
   border-color: #9333ea;
 }
@@ -475,10 +476,12 @@ footer .copyright p {
   background-color: #374151;
   color: #ffffff;
   cursor: pointer;
+  transition: 0.5s;
 }
 .productos-hero .filter-box select:focus {
   outline: none;
   border-color: #9333ea;
+  transition: 0.5s;
 }
 
 .articulos {
@@ -487,17 +490,23 @@ footer .copyright p {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  margin-bottom: 5rem;
+  margin-top: 3rem;
 }
 @media (min-width: 425px) {
   .articulos {
     grid-template-columns: repeat(2, 1fr);
     padding: 1rem;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
   }
 }
 @media (min-width: 768px) {
   .articulos {
     grid-template-columns: repeat(2, 1fr);
     padding: 1rem;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
   }
 }
 @media (min-width: 1024px) {
@@ -506,6 +515,8 @@ footer .copyright p {
     padding: 1rem;
     max-width: 1200px;
     margin: 0 auto;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
   }
 }
 .articulos article {
@@ -624,15 +635,13 @@ footer .copyright p {
   transform: translateY(-5px);
 }
 .servicio-card .servicio-icon {
-  background-color: #9333ea;
   padding: 1rem;
   border-radius: 12px;
   margin-bottom: 1rem;
+  background-color: #9333ea;
 }
-.servicio-card .servicio-icon svg {
-  width: 24px;
-  height: 24px;
-  stroke: #ffffff;
+.servicio-card .servicio-icon img {
+  filter: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg) brightness(100%) contrast(100%);
 }
 .servicio-card h2 {
   color: #ffffff;
@@ -763,9 +772,8 @@ footer .copyright p {
   transition: background-color 0.3s ease;
   margin-top: 1rem;
 }
-.contacto .contact-form .submit-btn svg {
-  width: 20px;
-  height: 20px;
+.contacto .contact-form .submit-btn img {
+  filter: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg) brightness(100%) contrast(100%);
 }
 .contacto .contact-form .submit-btn:hover {
   background-color: #a855f7;
@@ -797,10 +805,8 @@ footer .copyright p {
   gap: 1rem;
   margin-bottom: 1rem;
 }
-.contacto .contact-info .info-card .icon svg {
-  width: 24px;
-  height: 24px;
-  stroke: #9333ea;
+.contacto .contact-info .info-card .icon img {
+  filter: invert(22%) sepia(77%) saturate(6201%) hue-rotate(269deg) brightness(110%) contrast(100%);
 }
 .contacto .contact-info .info-card h3 {
   color: #ffffff;
@@ -821,6 +827,7 @@ body {
   margin: 0;
   padding: 0;
   font-size: 1rem;
+  background-color: #1f2937;
 }
 @media (min-width: 768px) {
   body {
@@ -837,7 +844,7 @@ body {
 
 button,
 a {
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
 
 /*# sourceMappingURL=main.css.map */

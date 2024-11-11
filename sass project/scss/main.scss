@@ -13,6 +13,7 @@ body {
   margin: 0;
   padding: 0;
   font-size: 1rem;
+  background-color: $fondo-oscuro;
 
   @media (min-width: $tablet) {
     font-size: 1.125rem;
@@ -27,5 +28,5 @@ body {
 
 button,
 a {
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }

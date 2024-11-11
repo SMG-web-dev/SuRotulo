@@ -93,9 +93,8 @@
       transition: background-color 0.3s ease;
       margin-top: $spacing;
 
-      svg {
-        width: 20px;
-        height: 20px;
+      img {
+        filter: $filter-white;
       }
 
       &:hover {
@@ -129,10 +128,8 @@
         gap: $spacing;
         margin-bottom: $spacing;
 
-        svg {
-          width: 24px;
-          height: 24px;
-          stroke: $primario;
+        img {
+          filter: $primario-filter;
         }
       }
 

@@ -48,15 +48,12 @@
   }
 
   .servicio-icon {
-    background-color: $primario;
     padding: $spacing;
     border-radius: 12px;
     margin-bottom: $spacing;
-
-    svg {
-      width: 24px;
-      height: 24px;
-      stroke: $texto-claro;
+    background-color: $primario;
+    img {
+      filter: $filter-white;
     }
   }
 

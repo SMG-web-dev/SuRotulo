@@ -17,6 +17,11 @@
     text-align: center;
     padding: $spacing;
   }
+  @media (max-width: 4000px) {
+    align-items: center;
+    text-align: center;
+    padding: $spacing;
+  }
 
   h1 {
     color: $texto-claro;
