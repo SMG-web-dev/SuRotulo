@@ -1,0 +1,155 @@
+// _header.scss
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing;
+  background-color: $fondo-header-footer;
+  border-bottom: 1px solid $borde-oscuro;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+
+  .logo img {
+    max-width: 8em;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+
+  nav {
+    display: none;
+    margin-left: auto;
+
+    @media (min-width: $tablet) {
+      display: flex;
+      align-items: center;
+    }
+
+    a {
+      color: $texto-claro;
+      margin-left: $spacing * 1.5;
+      text-decoration: none;
+      position: relative;
+      padding: 0.5rem 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: $primario;
+        transition: width 0.3s ease;
+      }
+
+      &:hover::after,
+      &.active::after {
+        width: 100%;
+      }
+
+      &:hover,
+      &.active {
+        color: $primario;
+      }
+    }
+
+    @media (max-width: $tablet) {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: $fondo-oscuro;
+      padding: $spacing;
+      flex-direction: column;
+      align-items: flex-start;
+
+      &.show-mobile-nav {
+        display: flex;
+      }
+
+      a {
+        padding: $spacing 0;
+        width: 100%;
+        text-align: left;
+      }
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing;
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      img {
+        width: 24px;
+        height: 24px;
+        filter: $filtro-blanco;
+      }
+    }
+  }
+
+  @media (max-width: $mobile) {
+    padding: $spacing;
+
+    .logo img {
+      max-width: 6em;
+    }
+  }
+
+  @media (min-width: $tablet) {
+    padding: $spacing $spacing * 2;
+
+    &.header-scroll {
+      transform: translateY(-100%);
+    }
+
+    &.header-visible {
+      transform: translateY(0);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .logo img {
+      max-width: 10em;
+    }
+  }
+
+  @media (min-width: $desktop) {
+    padding: $spacing $spacing * 3;
+
+    .logo img {
+      max-width: 12em;
+    }
+
+    nav a {
+      margin-left: $spacing * 2;
+    }
+  }
+
+  .menu-toggle {
+    display: none;
+
+    @media (max-width: $tablet) {
+      display: block;
+    }
+  }
+}
