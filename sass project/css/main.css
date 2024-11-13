@@ -399,6 +399,24 @@ footer .copyright p {
   font-size: 0.75rem;
 }
 
+.footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #a3a3a3;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.footer-bottom p {
+  margin-bottom: 0.5rem;
+}
+.footer-bottom a {
+  color: #a3a3a3;
+  text-decoration: none;
+}
+.footer-bottom a:hover {
+  color: #ffffff;
+}
+
 @media (min-width: 768px) {
   footer .footer-content {
     display: grid;
@@ -657,10 +675,13 @@ footer .copyright p {
   background-color: #9333ea;
   color: #ffffff;
   text-align: center;
-  padding: 3rem 1rem;
-  margin-top: 3rem;
+  padding: 2rem 1rem;
   border-radius: 8px;
-  margin: 2rem;
+  display: flexbox;
+  flex: content;
+  max-width: 600px;
+  margin: 3rem;
+  justify-self: center;
 }
 .contacto-cta h2 {
   font-size: 1.5rem;
@@ -822,6 +843,124 @@ footer .copyright p {
   margin-bottom: 0;
 }
 
+.documents-container {
+  background-color: #1f2937;
+  padding: 2rem;
+  min-height: 100vh;
+}
+.documents-container .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.documents-container h1 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: "GeistVFmono", monospace;
+}
+@media (max-width: 768px) {
+  .documents-container h1 {
+    font-size: 2rem;
+  }
+}
+.documents-container .document-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+@media (min-width: 768px) {
+  .documents-container .document-buttons {
+    padding: 0;
+  }
+}
+.documents-container .document-buttons .document-btn {
+  background-color: #374151;
+  color: #ffffff;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "GeistVF", sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (min-width: 768px) {
+  .documents-container .document-buttons .document-btn {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+}
+.documents-container .document-buttons .document-btn:hover, .documents-container .document-buttons .document-btn:focus {
+  background-color: rgb(65.3125, 77.1875, 96.1875);
+  transform: translateY(-2px);
+}
+.documents-container .document-buttons .document-btn.active {
+  background-color: #9333ea;
+  color: #ffffff;
+}
+.documents-container .document-buttons .document-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #9333ea;
+}
+.documents-container .pdf-container {
+  background-color: #374151;
+  border-radius: 8px;
+  padding: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 300px);
+  min-height: 500px;
+}
+@media (max-width: 768px) {
+  .documents-container .pdf-container {
+    height: calc(100vh - 250px);
+    min-height: 400px;
+  }
+}
+.documents-container .pdf-container #pdf-viewer {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.documents-container .pdf-container p {
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem;
+}
+.documents-container .pdf-container p a {
+  color: #9333ea;
+  text-decoration: none;
+}
+.documents-container .pdf-container p a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .documents-container {
+    padding: 1rem;
+  }
+  .documents-container h1 {
+    font-size: 2rem;
+  }
+  .documents-container .document-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .documents-container .document-buttons .document-btn {
+    width: 100%;
+  }
+  .documents-container .pdf-container {
+    height: 70vh;
+  }
+}
 body {
   font-family: "GeistVF", sans-serif;
   margin: 0;

@@ -11,6 +11,7 @@ class Header extends HTMLElement {
           <a href="productos.html">Productos</a>
           <a href="servicios.html">Servicios</a>
           <a href="contacto.html">Contacto</a>
+          <a href="documentos.html">documentos</a>
         </nav>
         <div class="header-actions">
           <button class="theme-toggle" aria-label="Cambiar tema">
@@ -37,6 +38,9 @@ class Header extends HTMLElement {
 // Componente del Footer
 class Footer extends HTMLElement {
   connectedCallback() {
+    const currentPage = window.location.pathname.split("/").pop();
+    const isContactPage = currentPage === 'contacto.html';
+
     this.innerHTML = `
       <footer>
         <div class="footer-content">
@@ -57,45 +61,73 @@ class Footer extends HTMLElement {
               </a>
             </div>
           </div>
-          <div class="quick-links">
-            <h3>Enlaces Rápidos</h3>
-            <nav>
-              <a href="index.html">Inicio</a>
-              <a href="productos.html">Productos</a>
-              <a href="servicios.html">Servicios</a>
-              <a href="contacto.html">Contacto</a>
-            </nav>
-          </div>
-          <div class="contact">
-            <h3>Contacto</h3>
-            <div class="contact-info">
-              <div class="contact-item">
-                <img src="/svg/map-pin.svg" alt="Ubicación" class="location" />
-                <span>123 Calle Principal, Ciudad</span>
-              </div>
-              <div class="contact-item">
-                <img src="/svg/phone.svg" alt="Teléfono" class="phone" />
-                <span>+34 123 456 789</span>
-              </div>
-              <div class="contact-item">
-                <img src="/svg/mail.svg" alt="Email" class="email" />
-                <span>info@surotulo.com</span>
-              </div>
+           ${!isContactPage ? this.renderContactSection() : ''}
+          <div class="footer-nav">
+            <div class="quick-links">
+              <h3>Enlaces Rápidos</h3>
+              <nav>
+                ${this.renderNavLinks(currentPage)}
+              </nav>
             </div>
           </div>
-          <div class="newsletter">
-            <h3>Boletín</h3>
-            <p>Suscríbete para recibir nuestras últimas noticias y ofertas.</p>
-            <form>
-              <input type="email" placeholder="Tu correo electrónico" required />
-              <button type="submit">Suscribirse</button>
-            </form>
+          <div class="footer-actions">
+            <div class="newsletter">
+              <h3>Boletín</h3>
+              <p>Suscríbete para recibir nuestras últimas noticias y ofertas.</p>
+              <form>
+                <input type="email" placeholder="Tu correo electrónico" required />
+                <button type="submit">Suscribirse</button>
+              </form>
+            </div>
           </div>
         </div>
-        <div class="copyright">
+        <div class="footer-bottom">
           <p>&copy; 2023 SuRótulo. Todos los derechos reservados.</p>
+          <p>
+            <br />Esta obra está bajo una 
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+              Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional
+            </a>.
+          </p>
         </div>
       </footer>
+    `;
+  }
+
+  renderNavLinks(currentPage) {
+    const pages = [
+      { href: 'index.html', text: 'Inicio' },
+      { href: 'productos.html', text: 'Productos' },
+      { href: 'servicios.html', text: 'Servicios' },
+      { href: 'contacto.html', text: 'Contacto' },
+      { href: 'documentos.html', text: 'Documentos' }
+    ];
+
+    return pages
+      .filter(page => page.href !== currentPage)
+      .map(page => `<a href="${page.href}">${page.text}</a>`)
+      .join('');
+  }
+
+  renderContactSection() {
+    return `
+      <div class="contact">
+        <h3>Contacto</h3>
+        <div class="contact-info">
+          <div class="contact-item">
+            <img src="/svg/map-pin.svg" alt="Ubicación" class="location" />
+            <span>123 Calle Principal, Ciudad</span>
+          </div>
+          <div class="contact-item">
+            <img src="/svg/phone.svg" alt="Teléfono" class="phone" />
+            <span>+34 123 456 789</span>
+          </div>
+          <div class="contact-item">
+            <img src="/svg/mail.svg" alt="Email" class="email" />
+            <span>info@surotulo.com</span>
+          </div>
+        </div>
+      </div>
     `;
   }
 }

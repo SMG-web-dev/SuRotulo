@@ -73,10 +73,13 @@
   background-color: $primario;
   color: $texto-claro;
   text-align: center;
-  padding: $spacing * 3 $spacing;
-  margin-top: $spacing * 3;
+  padding: $spacing * 2 $spacing;
   border-radius: 8px;
-  margin: $spacing * 2;
+  display: flexbox;
+  flex: content;
+  max-width: $max-width / 2;
+  margin: $spacing * 3;
+  justify-self: center;
 
   h2 {
     font-size: 1.5rem;
