@@ -1,7 +1,7 @@
-
 export class Header extends HTMLElement {
   constructor() {
     super();
+    this.lastScrollTop = 0;
   }
 
   connectedCallback() {
@@ -11,7 +11,7 @@ export class Header extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <header>
+      <header class="header-visible">
         <div class="logo">
           <img src="./public/logo.png" alt="SuRótulo Logo" />
         </div>
@@ -47,21 +47,31 @@ export class Header extends HTMLElement {
   }
 
   handleScroll() {
-    const header = this.querySelector('.su-header');
-    if (window.scrollY > 50) {
-      header.classList.add('header-scroll');
+    const header = this.querySelector('header');
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScrollTop > this.lastScrollTop && currentScrollTop > 50) {
+      // Scrolling down
       header.classList.remove('header-visible');
+      header.classList.add('header-hidden');
     } else {
-      header.classList.remove('header-scroll');
+      // Scrolling up
+      header.classList.remove('header-hidden');
       header.classList.add('header-visible');
     }
+
+    this.lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
   }
 
   setActiveLink() {
     const currentPage = window.location.pathname.split("/").pop() || 'index.html';
     const links = this.querySelectorAll('nav a');
     links.forEach(link => {
-      link.classList.toggle('active', link.getAttribute('href') === currentPage);
+      if (link.getAttribute('href') === currentPage) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
     });
   }
 }

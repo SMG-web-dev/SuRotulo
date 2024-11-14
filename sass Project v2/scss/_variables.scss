@@ -1,4 +1,5 @@
 // _variables.scss
+@use "sass:color";
 
 // Colores principales
 $primario: #9333ea;
@@ -15,14 +16,15 @@ $fondo-oscuro: #1f2937;
 $fondo-claro: #ffffff;
 $fondo-cards: #374151;
 $fondo-header-footer: #111827;
+$fondo-hero: #430d6e;
 
 // Botones
 $boton-primario-fondo: $primario;
-$boton-primario-hover: lighten($primario, 10%);
+$boton-primario-hover: color.scale($primario, $lightness: 10%);
 $boton-primario-text: $texto-claro;
 
 $boton-secundario-fondo: $secundario;
-$boton-secundario-hover: lighten($secundario, 10%);
+$boton-secundario-hover: color.scale($secundario, $lightness: 10%);
 $boton-secundario-text: $texto-claro;
 
 // Bordes
@@ -30,9 +32,12 @@ $borde-claro: #e5e7eb;
 $borde-oscuro: #4b5563;
 
 // Filtros para SVG
-$filtro-primario: invert(22%) sepia(77%) saturate(6201%) hue-rotate(269deg) brightness(110%) contrast(100%);
-$filtro-blanco: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg) brightness(100%) contrast(100%);
-$filtro-gris: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg) brightness(100%) contrast(30%);
+$filtro-primario: invert(22%) sepia(77%) saturate(6201%) hue-rotate(269deg)
+  brightness(110%) contrast(100%);
+$filtro-blanco: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg)
+  brightness(100%) contrast(100%);
+$filtro-gris: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg)
+  brightness(100%) contrast(30%);
 
 // Medidas
 $spacing: 1rem;

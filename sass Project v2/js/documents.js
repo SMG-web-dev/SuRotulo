@@ -12,6 +12,12 @@ export function setupDocuments() {
                 button.classList.add('active');
             });
         });
-        buttons[0].click();
+
+        // Automatically load the first PDF
+        const firstPdfUrl = buttons[0].getAttribute('data-pdf');
+        if (firstPdfUrl) {
+            pdfViewer.src = firstPdfUrl;
+            buttons[0].classList.add('active');
+        }
     }
 }

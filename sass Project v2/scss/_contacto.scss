@@ -1,33 +1,37 @@
+@use "sass:math";
+@use "sass:color";
+@use "variables";
+
 .contacto {
-  padding: $spacing * 2;
-  background-color: $fondo-oscuro;
-  min-height: 100vh;
+  padding: calc(variables.$spacing * 2);
+  background-color: variables.$fondo-oscuro;
+  min-height: 85vh;
 
   .container {
-    max-width: $max-width;
+    max-width: variables.$max-width;
     margin: 0 auto;
   }
 
   h1 {
     font-size: 2.5rem;
-    color: $texto-claro;
+    color: variables.$texto-claro;
     text-align: center;
-    margin-bottom: $spacing;
+    margin-bottom: variables.$spacing;
   }
 
   .subtitle {
-    color: $texto-claro-gris;
+    color: variables.$texto-claro-gris;
     text-align: center;
-    margin-bottom: $spacing * 3;
+    margin-bottom: calc(variables.$spacing * 3);
     font-size: 1.1rem;
   }
 
   .content-wrapper {
     display: flex;
     flex-direction: column;
-    gap: $spacing * 3;
+    gap: calc(variables.$spacing * 3);
 
-    @media (min-width: $desktop) {
+    @media (min-width: variables.$desktop) {
       flex-direction: row;
       align-items: flex-start;
     }
@@ -37,18 +41,18 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: $spacing * 1.5;
-    background-color: $fondo-cards;
-    padding: $spacing * 2;
+    gap: calc(variables.$spacing * 1.5);
+    background-color: variables.$fondo-cards;
+    padding: variables.$spacing * 2;
     border-radius: 8px;
 
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: $spacing * 0.5;
+      gap: variables.$spacing * 0.5;
 
       label {
-        color: $texto-claro;
+        color: variables.$texto-claro;
         font-size: 1rem;
         font-family: "GeistVFmono", monospace;
       }
@@ -56,16 +60,16 @@
       input,
       select,
       textarea {
-        background-color: rgba($fondo-oscuro, 0.5);
-        color: $texto-claro;
+        background-color: color.adjust(variables.$fondo-oscuro, $alpha: -0.5);
+        color: variables.$texto-claro;
         padding: 0.75rem;
         border-radius: 5px;
-        border: 1px solid $borde-oscuro;
+        border: 1px solid variables.$borde-oscuro;
         font-family: "GeistVF", sans-serif;
         font-size: 1rem;
 
         &:focus {
-          border-color: $primario;
+          border-color: variables.$primario;
           outline: none;
         }
       }
@@ -80,9 +84,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: $spacing;
-      background-color: $primario;
-      color: $texto-claro;
+      gap: variables.$spacing;
+      background-color: variables.$primario;
+      color: variables.$texto-claro;
       padding: 0.75rem 1.5rem;
       border: none;
       border-radius: 5px;
@@ -90,14 +94,14 @@
       font-family: "GeistVF", sans-serif;
       font-size: 1.1rem;
       transition: background-color 0.3s ease;
-      margin-top: $spacing;
+      margin-top: variables.$spacing;
 
       img {
-        filter: $filtro-blanco;
+        filter: variables.$filtro-blanco;
       }
 
       &:hover {
-        background-color: $boton-primario-hover;
+        background-color: variables.$boton-primario-hover;
       }
     }
   }
@@ -105,42 +109,42 @@
   .contact-info {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $spacing;
+    gap: calc(variables.$spacing + 0.65rem);
 
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (min-width: $desktop) {
+    @media (min-width: variables.$desktop) {
       grid-template-columns: 1fr;
       min-width: 300px;
     }
 
     .info-card {
-      background-color: $fondo-cards;
-      padding: $spacing * 1.5;
+      background-color: variables.$fondo-cards;
+      padding: (variables.$spacing * 1.5);
       border-radius: 8px;
 
       .icon {
         display: flex;
         align-items: center;
-        gap: $spacing;
-        margin-bottom: $spacing;
+        gap: variables.$spacing;
+        margin-bottom: variables.$spacing;
 
         img {
-          filter: $filtro-primario;
+          filter: variables.$filtro-primario;
+        }
+
+        h3 {
+          color: variables.$texto-claro;
+          font-size: 1.2rem;
+          margin: 0;
         }
       }
 
-      h3 {
-        color: $texto-claro;
-        font-size: 1.2rem;
-        margin-bottom: $spacing;
-      }
-
       p {
-        color: $texto-claro-gris;
-        margin-bottom: $spacing * 0.5;
+        color: variables.$texto-claro-gris;
+        margin-bottom: variables.$spacing * 0.5;
         font-size: 0.95rem;
 
         &:last-child {

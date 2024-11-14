@@ -3,11 +3,12 @@ import { setupDocuments } from './documents.js';
 import { Footer } from './footer.js';
 import { Header } from './header.js';
 
+customElements.define('su-header', Header);
+customElements.define('su-footer', Footer);
+
 document.addEventListener('DOMContentLoaded', () => {
     setupAnimations();
     setupDocuments();
-    customElements.define('su-header', Header);
-    customElements.define('su-footer', Footer);
 
     // Precarga de la imagen del logo
     const logoImg = new Image();
@@ -55,6 +56,7 @@ function changePage(url) {
             currentContent.replaceWith(newContent);
             history.pushState(null, '', url);
             setupAnimations();
+            setupDocuments(); // Add this line to setup documents after page change
         })
         .catch(error => console.error('Error al cambiar de página:', error));
 }

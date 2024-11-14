@@ -1,35 +1,35 @@
 // main.scss
 
-@import "variables";
-@import "tipografia";
-@import "reset";
-@import "header";
-@import "footer";
-@import "hero";
-@import "articulos";
-@import "servicios";
-@import "contacto";
-@import "documentos";
+@use "variables";
+@use "tipografia";
+@use "reset";
+@use "header";
+@use "footer";
+@use "hero";
+@use "articulos";
+@use "servicios";
+@use "contacto";
+@use "documentos";
 
 body {
   font-family: "GeistVF", sans-serif;
   margin: 0;
   padding: 0;
   font-size: 1rem;
-  background-color: $fondo-oscuro;
-  color: $texto-claro;
+  background-color: variables.$fondo-oscuro;
+  color: variables.$texto-claro;
   transition: background-color 0.3s, color 0.3s;
 
   &.light-theme {
-    background-color: $fondo-claro;
-    color: $texto-oscuro;
+    background-color: variables.$fondo-claro;
+    color: variables.$texto-oscuro;
   }
 
-  @media (min-width: $tablet) {
+  @media (min-width: variables.$tablet) {
     font-size: 1.125rem;
   }
 
-  @media (min-width: $desktop) {
+  @media (min-width: variables.$desktop) {
     font-size: 1.25rem;
   }
 }
@@ -41,17 +41,17 @@ body.light-theme {
   .servicios-hero,
   .contacto,
   .documents-container {
-    background-color: $fondo-claro;
-    color: $texto-oscuro;
+    background-color: variables.$fondo-claro;
+    color: variables.$texto-oscuro;
 
     h1,
     h2,
     h3 {
-      color: $texto-oscuro;
+      color: variables.$texto-oscuro;
     }
 
     p {
-      color: $texto-oscuro-gris;
+      color: variables.$texto-oscuro-gris;
     }
   }
 
@@ -60,7 +60,7 @@ body.light-theme {
   .contact-form,
   .info-card,
   .document-buttons .document-btn {
-    background-color: $fondo-claro;
+    background-color: variables.$fondo-claro;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 }

@@ -1,76 +1,75 @@
 // _hero.scss
+@use "sass:color";
+@use "sass:math";
+@use "variables";
 
 .hero {
   min-height: 100vh;
-  padding: $spacing * 2;
+  padding: variables.$spacing * 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
   background: linear-gradient(
     145deg,
-    $fondo-oscuro 0%,
-    darken($fondo-oscuro, 15%) 100%
+    variables.$fondo-hero 0%,
+    color.adjust(variables.$fondo-hero, $lightness: -15%) 100%
   );
+  text-align: left;
 
-  @media (max-width: $tablet) and (orientation: portrait) {
-    background-video: url("../public/BLUHOTELES.mp4") no-repeat center center;
-    background-size: cover;
+  @media (max-width: variables.$tablet) {
+    align-items: center;
+    text-align: center;
+    padding: variables.$spacing;
+  }
+  @media (max-width: 4000px) {
+    align-items: center;
+    text-align: center;
+    padding: variables.$spacing;
   }
 
   h1 {
-    color: $texto-claro;
+    color: variables.$texto-claro;
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: $spacing;
-    max-width: 15ch;
+    margin-bottom: variables.$spacing;
+    max-width: 12ch;
   }
 
   p {
-    color: $texto-claro-gris;
+    color: color.change(variables.$texto-claro, $alpha: 0.9);
     font-size: clamp(1rem, 3vw, 1.25rem);
     line-height: 1.5;
-    margin-bottom: $spacing * 2;
+    margin-bottom: variables.$spacing * 2;
     max-width: 40ch;
   }
 
   .buttons {
     display: flex;
     flex-direction: column;
-    gap: $spacing;
+    gap: variables.$spacing;
     width: 100%;
     max-width: 300px;
-
-    @media (min-width: $tablet) {
-      flex-direction: row;
-      justify-content: center;
-      max-width: none;
-    }
 
     .primary-btn,
     .secondary-btn {
       width: 100%;
-      padding: $spacing $spacing * 1.5;
+      padding: variables.$spacing variables.$spacing * 1.5;
       border-radius: 8px;
       font-weight: 500;
       text-decoration: none;
       transition: background-color 0.3s ease;
       text-align: center;
-
-      @media (min-width: $tablet) {
-        width: auto;
-      }
     }
 
     .primary-btn {
-      background-color: $boton-primario-fondo;
-      color: $boton-primario-text;
+      background-color: variables.$boton-primario-fondo;
+      color: variables.$boton-primario-text;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: $spacing / 2;
+      gap: math.div(variables.$spacing, 2);
 
       &::after {
         content: "→";
@@ -78,17 +77,17 @@
       }
 
       &:hover {
-        background-color: $boton-primario-hover;
+        background-color: variables.$boton-primario-hover;
       }
     }
 
     .secondary-btn {
-      background-color: rgba($texto-claro, 0.1);
-      color: $texto-claro;
+      background-color: color.change(variables.$texto-claro, $alpha: 0.1);
+      color: variables.$texto-claro;
       backdrop-filter: blur(4px);
 
       &:hover {
-        background-color: rgba($texto-claro, 0.15);
+        background-color: color.change(variables.$texto-claro, $alpha: 0.15);
       }
     }
   }

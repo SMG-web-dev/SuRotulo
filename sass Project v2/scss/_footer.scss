@@ -1,163 +1,165 @@
-// _footer.scss
+@use "sass:math";
+@use "sass:color";
+@use "variables";
 
 footer {
-  background-color: $fondo-header-footer;
-  color: $texto-claro-gris;
-  padding: $spacing * 2 $spacing * 1.5;
+  background-color: variables.$fondo-header-footer;
+  color: variables.$texto-claro-gris;
+  padding: variables.$spacing * 2 variables.$spacing * 1.5;
   font-size: 0.875rem;
 
   h3,
   h4 {
-    color: $texto-claro;
+    color: variables.$texto-claro;
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: $spacing;
+    margin-bottom: variables.$spacing;
   }
 
   .brand {
-    margin-bottom: $spacing * 2;
+    margin-bottom: variables.$spacing * 2;
 
     .logo img {
       max-width: 10em;
       max-height: 5em;
-      margin-bottom: $spacing;
+      margin-bottom: variables.$spacing;
     }
 
     p {
       line-height: 1.5;
-      margin-bottom: $spacing;
+      margin-bottom: variables.$spacing;
     }
 
     .social-links {
       display: flex;
-      gap: $spacing;
+      gap: variables.$spacing;
 
       a img {
-        filter: $filtro-primario;
+        filter: variables.$filtro-primario;
         transition: filter 0.3s ease;
 
         &:hover {
-          filter: $filtro-blanco;
+          filter: variables.$filtro-blanco;
         }
       }
     }
   }
 
   .quick-links {
-    margin-bottom: $spacing * 2;
+    margin-bottom: variables.$spacing * 2;
 
     nav {
       display: flex;
       flex-direction: column;
-      gap: $spacing * 0.75;
+      gap: variables.$spacing * 0.75;
 
       a {
-        color: $texto-claro-gris;
+        color: variables.$texto-claro-gris;
         text-decoration: none;
         transition: color 0.2s ease;
 
         &:hover {
-          color: $texto-claro;
+          color: variables.$texto-claro;
         }
       }
     }
   }
 
   .contact {
-    margin-bottom: $spacing * 2;
+    margin-bottom: variables.$spacing * 2;
 
     img {
-      filter: $filtro-primario;
+      filter: variables.$filtro-primario;
     }
 
     .contact-info {
       display: flex;
       flex-direction: column;
-      gap: $spacing * 0.75;
+      gap: variables.$spacing * 0.75;
 
       .contact-item {
         display: flex;
         align-items: center;
-        gap: $spacing * 0.75;
+        gap: variables.$spacing * 0.75;
       }
     }
   }
 
   .newsletter {
-    margin-bottom: $spacing * 2;
+    margin-bottom: variables.$spacing * 2;
 
     form {
       display: flex;
       flex-direction: column;
-      gap: $spacing * 0.75;
+      gap: variables.$spacing * 0.75;
 
       input[type="email"] {
         background-color: transparent;
-        border: 1px solid $borde-oscuro;
+        border: 1px solid variables.$borde-oscuro;
         border-radius: 0.375rem;
-        padding: $spacing * 0.75 $spacing;
-        color: $texto-claro;
+        padding: variables.$spacing * 0.75 variables.$spacing;
+        color: variables.$texto-claro;
         font-size: 0.875rem;
         transition: border-color 0.3s ease;
 
         &::placeholder {
-          color: $texto-oscuro-gris;
+          color: variables.$texto-oscuro-gris;
         }
 
         &:focus {
           outline: none;
-          border-color: $primario;
+          border-color: variables.$primario;
         }
       }
 
       button {
-        background-color: $primario;
-        color: $texto-claro;
+        background-color: variables.$primario;
+        color: variables.$texto-claro;
         border: none;
         border-radius: 0.375rem;
-        padding: $spacing * 0.75;
+        padding: variables.$spacing * 0.75;
         font-size: 0.875rem;
         font-weight: 500;
         cursor: pointer;
         transition: background-color 0.2s ease;
 
         &:hover {
-          background-color: $boton-primario-hover;
+          background-color: variables.$boton-primario-hover;
         }
       }
     }
   }
 
   .footer-bottom {
-    margin-top: $spacing * 2;
-    padding-top: $spacing;
-    border-top: 1px solid $borde-oscuro;
+    margin-top: variables.$spacing * 2;
+    padding-top: variables.$spacing;
+    border-top: 1px solid variables.$borde-oscuro;
     text-align: center;
     font-size: 0.9rem;
 
     p {
-      margin-bottom: $spacing * 0.5;
+      margin-bottom: variables.$spacing * 0.5;
     }
 
     a {
-      color: $texto-claro-gris;
+      color: variables.$texto-claro-gris;
       text-decoration: none;
 
       &:hover {
-        color: $texto-claro;
+        color: variables.$texto-claro;
       }
     }
   }
 
-  @media (min-width: $tablet) {
+  @media (min-width: variables.$tablet) {
     .footer-content {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: $spacing * 3;
+      gap: variables.$spacing * 3;
     }
   }
 
-  @media (min-width: $desktop) {
+  @media (min-width: variables.$desktop) {
     .footer-content {
       grid-template-columns: 2fr 1fr 1fr 1.5fr;
     }

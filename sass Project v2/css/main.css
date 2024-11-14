@@ -44,7 +44,7 @@ img,
 picture,
 video,
 canvas,
-img {
+svg {
   display: block;
   max-width: 100%;
 }
@@ -69,10 +69,17 @@ header {
   background-color: #111827;
   border-bottom: 1px solid #4b5563;
   width: 100%;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   z-index: 1000;
   transition: transform 0.3s ease;
+}
+header.header-hidden {
+  transform: translateY(-100%);
+}
+header.header-visible {
+  transform: translateY(0);
 }
 header .logo img {
   max-width: 8em;
@@ -80,13 +87,23 @@ header .logo img {
   transition: transform 0.3s ease;
 }
 header nav {
-  display: none;
-  margin-left: auto;
+  display: flex;
+  align-items: center;
 }
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   header nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #1f2937;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  header nav.show-mobile-nav {
     display: flex;
-    align-items: center;
   }
 }
 header nav a {
@@ -113,20 +130,6 @@ header nav a:hover, header nav a.active {
   color: #9333ea;
 }
 @media (max-width: 768px) {
-  header nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: #1f2937;
-    padding: 1rem;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  header nav.show-mobile-nav {
-    display: flex;
-  }
   header nav a {
     padding: 1rem 0;
     width: 100%;
@@ -165,13 +168,6 @@ header .header-actions button img {
   header {
     padding: 1rem 2rem;
   }
-  header.header-scroll {
-    transform: translateY(-100%);
-  }
-  header.header-visible {
-    transform: translateY(0);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
   header .menu-toggle {
     display: none;
   }
@@ -197,6 +193,10 @@ header .menu-toggle {
   header .menu-toggle {
     display: block;
   }
+}
+
+body {
+  padding-top: 60px;
 }
 
 footer {
@@ -303,7 +303,7 @@ footer .newsletter form button {
   transition: background-color 0.2s ease;
 }
 footer .newsletter form button:hover {
-  background-color: rgb(171.48, 97.24, 238.76);
+  background-color: rgb(157.8, 71.4, 236.1);
 }
 footer .footer-bottom {
   margin-top: 2rem;
@@ -341,14 +341,22 @@ footer .footer-bottom a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: linear-gradient(145deg, #1f2937 0%, rgb(3.4244186047, 4.5290697674, 6.0755813953) 100%);
+  align-items: flex-start;
+  background: linear-gradient(145deg, #430d6e 0%, rgb(25.3292682927, 4.9146341463, 41.5853658537) 100%);
+  text-align: left;
 }
-@media (max-width: 768px) and (orientation: portrait) {
+@media (max-width: 768px) {
   .hero {
-    background-video: url("../public/BLUHOTELES.mp4") no-repeat center center;
-    background-size: cover;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+  }
+}
+@media (max-width: 4000px) {
+  .hero {
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
   }
 }
 .hero h1 {
@@ -357,10 +365,10 @@ footer .footer-bottom a:hover {
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1rem;
-  max-width: 15ch;
+  max-width: 12ch;
 }
 .hero p {
-  color: #a3a3a3;
+  color: rgba(255, 255, 255, 0.9);
   font-size: clamp(1rem, 3vw, 1.25rem);
   line-height: 1.5;
   margin-bottom: 2rem;
@@ -373,13 +381,6 @@ footer .footer-bottom a:hover {
   width: 100%;
   max-width: 300px;
 }
-@media (min-width: 768px) {
-  .hero .buttons {
-    flex-direction: row;
-    justify-content: center;
-    max-width: none;
-  }
-}
 .hero .buttons .primary-btn,
 .hero .buttons .secondary-btn {
   width: 100%;
@@ -389,12 +390,6 @@ footer .footer-bottom a:hover {
   text-decoration: none;
   transition: background-color 0.3s ease;
   text-align: center;
-}
-@media (min-width: 768px) {
-  .hero .buttons .primary-btn,
-  .hero .buttons .secondary-btn {
-    width: auto;
-  }
 }
 .hero .buttons .primary-btn {
   background-color: #9333ea;
@@ -409,7 +404,7 @@ footer .footer-bottom a:hover {
   font-size: 1.2em;
 }
 .hero .buttons .primary-btn:hover {
-  background-color: rgb(171.48, 97.24, 238.76);
+  background-color: rgb(157.8, 71.4, 236.1);
 }
 .hero .buttons .secondary-btn {
   background-color: rgba(255, 255, 255, 0.1);
@@ -681,7 +676,7 @@ footer .footer-bottom a:hover {
 .contacto {
   padding: 2rem;
   background-color: #1f2937;
-  min-height: 100vh;
+  min-height: 85vh;
 }
 .contacto .container {
   max-width: 1200px;
@@ -770,12 +765,12 @@ footer .footer-bottom a:hover {
   filter: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg) brightness(100%) contrast(100%);
 }
 .contacto .contact-form .submit-btn:hover {
-  background-color: rgb(171.48, 97.24, 238.76);
+  background-color: rgb(157.8, 71.4, 236.1);
 }
 .contacto .contact-info {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 1.65rem;
 }
 @media (min-width: 768px) {
   .contacto .contact-info {
@@ -802,10 +797,10 @@ footer .footer-bottom a:hover {
 .contacto .contact-info .info-card .icon img {
   filter: invert(22%) sepia(77%) saturate(6201%) hue-rotate(269deg) brightness(110%) contrast(100%);
 }
-.contacto .contact-info .info-card h3 {
+.contacto .contact-info .info-card .icon h3 {
   color: #ffffff;
   font-size: 1.2rem;
-  margin-bottom: 1rem;
+  margin: 0;
 }
 .contacto .contact-info .info-card p {
   color: #a3a3a3;
@@ -871,7 +866,7 @@ footer .footer-bottom a:hover {
   }
 }
 .documents-container .document-buttons .document-btn:hover, .documents-container .document-buttons .document-btn:focus {
-  background-color: rgb(65.3125, 77.1875, 96.1875);
+  background-color: rgb(62.5625, 73.9375, 92.1375);
   transform: translateY(-2px);
 }
 .documents-container .document-buttons .document-btn.active {

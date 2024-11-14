@@ -12,10 +12,10 @@ function setupHeaderScroll() {
   window.addEventListener('scroll', () => {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (scrollTop > lastScrollTop) {
-      header.classList.add('header-scroll');
+      header.classList.add('header-hidden');
       header.classList.remove('header-visible');
     } else {
-      header.classList.remove('header-scroll');
+      header.classList.remove('header-hidden');
       header.classList.add('header-visible');
     }
     lastScrollTop = scrollTop;
