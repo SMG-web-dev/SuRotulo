@@ -7,12 +7,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background: linear-gradient(
     145deg,
     $fondo-oscuro 0%,
     darken($fondo-oscuro, 15%) 100%
   );
-  text-align: center;
+
+  @media (max-width: $tablet) and (orientation: portrait) {
+    background-video: url("../public/BLUHOTELES.mp4") no-repeat center center;
+    background-size: cover;
+  }
 
   h1 {
     color: $texto-claro;
