@@ -80,6 +80,9 @@
   max-width: $max-width / 2;
   margin: $spacing * 3 auto;
 
+  @media (max-width: $tablet) {
+    margin: $spacing * 3;
+  }
   h2 {
     font-size: 1.5rem;
     margin-bottom: $spacing;

@@ -3,22 +3,16 @@
 .hero {
   min-height: 100vh;
   padding: $spacing * 2;
-  display: flexbox;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   background: linear-gradient(
     145deg,
     $fondo-oscuro 0%,
     darken($fondo-oscuro, 15%) 100%
   );
-  text-align: left;
-
-  @media (max-width: $tablet) {
-    align-items: center;
-    text-align: center;
-    padding: $spacing;
-  }
+  text-align: center;
 
   h1 {
     color: $texto-claro;
@@ -26,7 +20,7 @@
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: $spacing;
-    max-width: 12ch;
+    max-width: 15ch;
   }
 
   p {
@@ -44,6 +38,12 @@
     width: 100%;
     max-width: 300px;
 
+    @media (min-width: $tablet) {
+      flex-direction: row;
+      justify-content: center;
+      max-width: none;
+    }
+
     .primary-btn,
     .secondary-btn {
       width: 100%;
@@ -53,6 +53,10 @@
       text-decoration: none;
       transition: background-color 0.3s ease;
       text-align: center;
+
+      @media (min-width: $tablet) {
+        width: auto;
+      }
     }
 
     .primary-btn {

@@ -345,18 +345,13 @@ footer .footer-bottom a:hover {
   background: linear-gradient(145deg, #1f2937 0%, rgb(3.4244186047, 4.5290697674, 6.0755813953) 100%);
   text-align: center;
 }
-@media (max-width: 768px) {
-  .hero {
-    padding: 1rem;
-  }
-}
 .hero h1 {
   color: #ffffff;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1rem;
-  max-width: 12ch;
+  max-width: 15ch;
 }
 .hero p {
   color: #a3a3a3;
@@ -372,6 +367,13 @@ footer .footer-bottom a:hover {
   width: 100%;
   max-width: 300px;
 }
+@media (min-width: 768px) {
+  .hero .buttons {
+    flex-direction: row;
+    justify-content: center;
+    max-width: none;
+  }
+}
 .hero .buttons .primary-btn,
 .hero .buttons .secondary-btn {
   width: 100%;
@@ -381,6 +383,12 @@ footer .footer-bottom a:hover {
   text-decoration: none;
   transition: background-color 0.3s ease;
   text-align: center;
+}
+@media (min-width: 768px) {
+  .hero .buttons .primary-btn,
+  .hero .buttons .secondary-btn {
+    width: auto;
+  }
 }
 .hero .buttons .primary-btn {
   background-color: #9333ea;
@@ -637,6 +645,11 @@ footer .footer-bottom a:hover {
   border-radius: 8px;
   max-width: 600px;
   margin: 3rem auto;
+}
+@media (max-width: 768px) {
+  .contacto-cta {
+    margin: 3rem;
+  }
 }
 .contacto-cta h2 {
   font-size: 1.5rem;

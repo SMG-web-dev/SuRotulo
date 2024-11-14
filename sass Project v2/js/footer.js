@@ -1,43 +1,4 @@
-// components.js
-class Header extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
-      <header>
-        <div class="logo">
-          <img src="./public/logo.png" alt="SuRótulo Logo" />
-        </div>
-        <nav>
-          <a href="index.html">🏠 Inicio</a>
-          <a href="productos.html">🛍️ Productos</a>
-          <a href="servicios.html">💼 Servicios</a>
-          <a href="contacto.html">📞 Contacto</a>
-          <a href="documentos.html">📄 Documentos</a>
-        </nav>
-        <div class="header-actions">
-          <button class="theme-toggle" aria-label="Cambiar tema">
-            <img src="./svg/sun.svg" alt="Modo claro" />
-          </button>
-          <button class="menu-toggle" aria-label="Menú" aria-expanded="false">
-            <img src="./svg/menu.svg" alt="Menú" />
-          </button>
-        </div>
-      </header>
-    `;
-    this.setActiveLink();
-  }
-
-  setActiveLink() {
-    const currentPage = window.location.pathname.split("/").pop();
-    const navLinks = this.querySelectorAll('nav a');
-    navLinks.forEach(link => {
-      if (link.getAttribute('href') === currentPage) {
-        link.classList.add('active');
-      }
-    });
-  }
-}
-
-class Footer extends HTMLElement {
+export class Footer extends HTMLElement {
   connectedCallback() {
     const currentPage = window.location.pathname.split("/").pop();
     const isContactPage = currentPage === 'contacto.html';
