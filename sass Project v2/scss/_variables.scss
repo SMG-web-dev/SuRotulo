@@ -38,6 +38,8 @@ $filtro-blanco: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg)
   brightness(100%) contrast(100%);
 $filtro-gris: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg)
   brightness(100%) contrast(30%);
+$filtro-white: invert(100%) sepia(0%) saturate(7450%) hue-rotate(255deg)
+  brightness(1000%) contrast(100%);
 
 // Medidas
 $spacing: 1rem;

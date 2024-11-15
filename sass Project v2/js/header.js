@@ -13,7 +13,7 @@ export class Header extends HTMLElement {
     this.innerHTML = `
       <header class="header-visible">
         <div class="logo">
-          <img src="./public/logo.png" alt="SuRótulo Logo" />
+          <img src="./public/img/logo.png" alt="SuRótulo Logo" />
         </div>
         <nav>
           <a href="index.html">🏠 Inicio</a>

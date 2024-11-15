@@ -3,10 +3,11 @@
 @use "sass:math";
 @use "variables";
 
-.productos-hero {
-  background-color: variables.$fondo-oscuro;
+.articulos {
   padding: variables.$spacing * 2;
-  text-align: center;
+  background-color: variables.$fondo-oscuro;
+  margin: variables.$spacing * 3 auto variables.$spacing * 5;
+  max-width: variables.$max-width * 1.5;
 
   h1 {
     color: variables.$texto-claro;
@@ -14,88 +15,40 @@
     margin-bottom: variables.$spacing * 2;
   }
 
-  .search-container {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: variables.$spacing;
+  .section-title {
+    color: variables.$texto-claro;
+    font-size: clamp(1.7rem, 5vw, 2.5rem);
+    text-align: center;
+    margin-bottom: variables.$spacing * 4;
+    font-weight: 700;
+    font-family: "GeistVF", sans-serif;
+    line-height: 1.2;
+    padding: 0 variables.$spacing;
+
+    @media (min-width: variables.$tablet) {
+      font-size: 2rem;
+    }
+
+    @media (min-width: variables.$desktop) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .articulos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: variables.$spacing * 2;
 
     @media (min-width: variables.$mobile) {
-      flex-direction: row;
-    }
-  }
-
-  .search-box {
-    flex: 1;
-    position: relative;
-
-    .search-icon {
-      position: absolute;
-      left: variables.$spacing;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 20px;
-      height: 20px;
-      filter: variables.$filtro-blanco;
+      grid-template-columns: repeat(1, 1fr);
     }
 
-    input {
-      width: 100%;
-      padding: variables.$spacing variables.$spacing * 3;
-      border-radius: 8px;
-      border: 1px solid variables.$borde-oscuro;
-      background-color: variables.$fondo-cards;
-      color: variables.$texto-claro;
-      transition: border-color 0.3s ease;
-
-      &:focus {
-        outline: none;
-        border-color: variables.$primario;
-      }
+    @media (min-width: variables.$desktop) {
+      grid-template-columns: repeat(4, 1fr);
     }
-  }
-
-  .filter-box {
-    width: 100%;
-
-    @media (min-width: variables.$mobile) {
-      width: 200px;
+    @media (min-width: variables.$tablet) {
+      grid-template-columns: repeat(2, 1fr);
     }
-
-    select {
-      width: 100%;
-      padding: variables.$spacing;
-      border-radius: 8px;
-      border: 1px solid variables.$borde-oscuro;
-      background-color: variables.$fondo-cards;
-      color: variables.$texto-claro;
-      cursor: pointer;
-      transition: border-color 0.3s ease;
-
-      &:focus {
-        outline: none;
-        border-color: variables.$primario;
-      }
-    }
-  }
-}
-
-.articulos {
-  padding: variables.$spacing * 2;
-  background-color: variables.$fondo-oscuro;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: variables.$spacing * 2;
-  margin: variables.$spacing * 3 auto variables.$spacing * 5;
-  max-width: variables.$max-width;
-
-  @media (min-width: variables.$mobile) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (min-width: variables.$desktop) {
-    grid-template-columns: repeat(3, 1fr);
   }
 
   article {
@@ -116,9 +69,16 @@
 
     img {
       width: 100%;
-      height: 250px;
+      height: 20rem;
       object-fit: cover;
       transition: transform 0.3s ease;
+
+      @media (max-width: variables.$mobile) {
+        height: 10rem;
+      }
+      @media (max-width: variables.$tablet) {
+        height: 15rem;
+      }
     }
 
     .article-content {
@@ -137,11 +97,15 @@
       backdrop-filter: blur(4px);
     }
 
-    h2 {
+    h3 {
       color: variables.$texto-claro;
-      font-size: 1.25rem;
+      font-size: 2rem;
       margin-bottom: variables.$spacing;
       font-weight: 600;
+
+      @media (max-width: variables.$tablet) {
+        font-size: 1.25rem;
+      }
     }
 
     p {
@@ -172,6 +136,74 @@
       &:hover::after {
         width: 100%;
       }
+    }
+  }
+}
+
+.search-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing;
+
+  @media (min-width: variables.$mobile) {
+    flex-direction: row;
+  }
+}
+
+.search-box {
+  flex: 1;
+  position: relative;
+
+  .search-icon {
+    position: absolute;
+    left: variables.$spacing;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    filter: variables.$filtro-white;
+  }
+
+  input {
+    width: 100%;
+    padding: variables.$spacing variables.$spacing * 3;
+    border-radius: 8px;
+    border: 1px solid variables.$borde-oscuro;
+    background-color: variables.$fondo-cards;
+    color: variables.$texto-claro;
+    transition: 0.5s;
+
+    &:focus {
+      transition: 0.5s;
+      outline: none;
+      border-color: variables.$primario;
+    }
+  }
+}
+
+.filter-box {
+  width: 100%;
+
+  @media (min-width: variables.$mobile) {
+    width: 200px;
+  }
+
+  select {
+    width: 100%;
+    padding: variables.$spacing;
+    border-radius: 8px;
+    border: 1px solid variables.$borde-oscuro;
+    background-color: variables.$fondo-cards;
+    color: variables.$texto-claro;
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:focus {
+      outline: none;
+      border-color: variables.$primario;
+      transition: 0.5s;
     }
   }
 }

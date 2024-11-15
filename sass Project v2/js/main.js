@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Precarga de la imagen del logo
     const logoImg = new Image();
-    logoImg.src = './public/logo.png';
+    logoImg.src = './public/img/logo.png';
 
     // Uso de IntersectionObserver para carga perezosa de componentes
     const observer = new IntersectionObserver((entries) => {

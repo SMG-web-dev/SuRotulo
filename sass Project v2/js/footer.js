@@ -20,7 +20,7 @@ export class Footer extends HTMLElement {
     return `
       <div class="brand">
         <div class="logo">
-          <img src="./public/logo.png" alt="SuRótulo Logo" />
+          <img src="./public/img/logo.png" alt="SuRótulo Logo" />
         </div>
         <p>Transformando espacios con diseños innovadores y sostenibles.</p>
         <div class="social-links">
