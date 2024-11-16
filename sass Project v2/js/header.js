@@ -1,7 +1,7 @@
 export class Header extends HTMLElement {
   constructor() {
     super();
-    this.lastScrollTop = 0;
+    this.isOpen = false;
   }
 
   connectedCallback() {
@@ -11,21 +11,25 @@ export class Header extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <header class="header-visible">
-        <div class="logo">
-          <img src="./public/img/logo.png" alt="SuRótulo Logo" />
-        </div>
-        <nav>
-          <a href="index.html">🏠 Inicio</a>
-          <a href="productos.html">🛍️ Productos</a>
-          <a href="servicios.html">💼 Servicios</a>
-          <a href="contacto.html">📞 Contacto</a>
-          <a href="documentos.html">📄 Documentos</a>
-        </nav>
-        <div class="header-actions">
-          <button class="menu-toggle" aria-label="Menú" aria-expanded="false">
-            <img src="./svg/menu.svg" alt="Menú" />
-          </button>
+      <header>
+        <div class="navbar-container">
+          <div class="logo">
+            <a href="/" class="logo-link">
+              <img src="./public/img/logo.png" alt="SuRótulo Logo" />
+            </a>
+          </div>
+          <nav>
+            <a href="index.html" class="nav-link">🏠 Inicio</a>
+            <a href="productos.html" class="nav-link">🛍️ Productos</a>
+            <a href="servicios.html" class="nav-link">💼 Servicios</a>
+            <a href="contacto.html" class="nav-link">📞 Contacto</a>
+            <a href="documentos.html" class="nav-link">📄 Documentos</a>
+          </nav>
+          <div class="header-actions">
+            <button class="menu-toggle" aria-label="Menú" aria-expanded="false">
+              <img src="./svg/menu.svg" alt="Menú" />
+            </button>
+          </div>
         </div>
       </header>
     `;
@@ -36,35 +40,49 @@ export class Header extends HTMLElement {
     const menuToggle = this.querySelector('.menu-toggle');
     const nav = this.querySelector('nav');
 
-    menuToggle.addEventListener('click', () => {
-      nav.classList.toggle('show-mobile-nav');
-      menuToggle.setAttribute('aria-expanded', nav.classList.contains('show-mobile-nav'));
+    menuToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      this.isOpen = !this.isOpen;
+      nav.classList.toggle('show-mobile-nav', this.isOpen);
+      menuToggle.setAttribute('aria-expanded', this.isOpen);
+      menuToggle.innerHTML = this.isOpen ? '<img src="./svg/x.svg" alt="Cerrar" />' : '<img src="./svg/menu.svg" alt="Menú" />';
     });
 
-    window.addEventListener('scroll', this.handleScroll.bind(this));
+    document.addEventListener('click', (event) => {
+      if (this.isOpen && !this.contains(event.target)) {
+        this.isOpen = false;
+        nav.classList.remove('show-mobile-nav');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.innerHTML = '<img src="./svg/menu.svg" alt="Menú" />';
+      }
+    });
 
     this.setActiveLink();
+
+    const navLinks = this.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const href = link.getAttribute('href');
+        this.setActiveLink(href);
+        if (href === 'index.html') {
+          this.reloadHeroVideo();
+        }
+        window.history.pushState({}, '', href);
+        this.dispatchEvent(new CustomEvent('navigate', { detail: { href } }));
+
+        // Cerrar el menú móvil después de hacer clic en un enlace
+        if (window.innerWidth <= 768) {
+          this.isOpen = false;
+          nav.classList.remove('show-mobile-nav');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.innerHTML = '<img src="./svg/menu.svg" alt="Menú" />';
+        }
+      });
+    });
   }
 
-  handleScroll() {
-    const header = this.querySelector('header');
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (currentScrollTop > this.lastScrollTop && currentScrollTop > 50) {
-      // Scrolling down
-      header.classList.remove('header-visible');
-      header.classList.add('header-hidden');
-    } else {
-      // Scrolling up
-      header.classList.remove('header-hidden');
-      header.classList.add('header-visible');
-    }
-
-    this.lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
-  }
-
-  setActiveLink() {
-    const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+  setActiveLink(currentPage = window.location.pathname.split("/").pop() || 'index.html') {
     const links = this.querySelectorAll('nav a');
     links.forEach(link => {
       if (link.getAttribute('href') === currentPage) {
@@ -73,5 +91,15 @@ export class Header extends HTMLElement {
         link.classList.remove('active');
       }
     });
+  }
+
+  reloadHeroVideo() {
+    const heroVideo = document.querySelector('.hero__video-bg');
+    if (heroVideo) {
+      heroVideo.load();
+      heroVideo.play().catch(error => {
+        console.error('Error al reproducir el video:', error);
+      });
+    }
   }
 }

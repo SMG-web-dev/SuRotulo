@@ -1,5 +1,5 @@
 import { setupAnimations } from './animations.js';
-import { setupDocuments } from './documents.js';
+import { setupDocuments } from './documents.js';;
 import { Footer } from './footer.js';
 import { Header } from './header.js';
 
@@ -9,6 +9,11 @@ customElements.define('su-footer', Footer);
 document.addEventListener('DOMContentLoaded', () => {
     setupAnimations();
     setupDocuments();
+
+    const header = document.querySelector('su-header');
+    header.addEventListener('navigate', (event) => {
+        changePage(event.detail.href);
+    });
 
     // Precarga de la imagen del logo
     const logoImg = new Image();

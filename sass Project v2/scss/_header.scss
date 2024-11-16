@@ -1,18 +1,26 @@
+@use "sass:color";
 @use "variables";
+
+@mixin header-padding($multiplier: 1) {
+  padding: variables.$spacing variables.$spacing * $multiplier;
+}
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: variables.$spacing;
-  background-color: variables.$fondo-header-footer;
-  border-bottom: 1px solid variables.$borde-oscuro;
+  @include header-padding;
+  color: variables.$boton-primario-text;
+  background-color: color.change(variables.$fondo-header-footer, $alpha: 0.8);
+  backdrop-filter: blur(8px);
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
+  height: 80px;
 
   &.header-hidden {
     transform: translateY(-100%);
@@ -22,15 +30,22 @@ header {
     transform: translateY(0);
   }
 
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: variables.$max-width;
+    margin: auto;
+  }
+
   .logo img {
-    max-width: 8em;
     height: auto;
-    transition: transform 0.3s ease;
   }
 
   nav {
     display: flex;
-    align-items: center;
+    align-items: end;
 
     @media (max-width: variables.$tablet) {
       display: none;
@@ -45,6 +60,12 @@ header {
 
       &.show-mobile-nav {
         display: flex;
+        background-color: color.change(
+          variables.$fondo-header-footer,
+          $alpha: 0.8
+        );
+        backdrop-filter: blur(9px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       }
     }
 
@@ -78,7 +99,7 @@ header {
 
       @media (max-width: variables.$tablet) {
         padding: variables.$spacing 0;
-        width: 100%;
+        width: 80%;
         text-align: left;
       }
     }
@@ -108,38 +129,6 @@ header {
     }
   }
 
-  @media (max-width: variables.$mobile) {
-    padding: variables.$spacing;
-
-    .logo img {
-      max-width: 6em;
-    }
-  }
-
-  @media (min-width: variables.$tablet) {
-    padding: variables.$spacing variables.$spacing * 2;
-
-    .menu-toggle {
-      display: none;
-    }
-
-    .logo img {
-      max-width: 10em;
-    }
-  }
-
-  @media (min-width: variables.$desktop) {
-    padding: variables.$spacing variables.$spacing * 3;
-
-    .logo img {
-      max-width: 12em;
-    }
-
-    nav a {
-      margin-left: variables.$spacing * 2;
-    }
-  }
-
   .menu-toggle {
     display: none;
 
@@ -147,8 +136,33 @@ header {
       display: block;
     }
   }
-}
 
-body {
-  padding-top: 60px; // Adjust this value based on your header height
+  // Responsive
+  @media (max-width: variables.$mobile) {
+    @include header-padding;
+
+    .logo img {
+      max-width: 8em;
+    }
+  }
+
+  @media (min-width: variables.$tablet) {
+    @include header-padding(2);
+
+    .logo img {
+      max-width: 9.5em;
+    }
+  }
+
+  @media (min-width: variables.$desktop) {
+    @include header-padding(3);
+
+    .logo img {
+      max-width: 11em;
+    }
+
+    nav a {
+      margin-left: variables.$spacing * 2;
+    }
+  }
 }

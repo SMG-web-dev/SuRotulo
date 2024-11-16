@@ -23,6 +23,11 @@ footer {
       max-width: 10em;
       max-height: 5em;
       margin-bottom: variables.$spacing;
+
+      @media (min-width: variables.$desktop) {
+        max-width: 15em;
+        max-height: 7.5em;
+      }
     }
 
     p {

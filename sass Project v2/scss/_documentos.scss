@@ -5,12 +5,12 @@
 
 .documents-container {
   background-color: variables.$fondo-oscuro;
-  padding: variables.$spacing * 2;
   min-height: 100vh;
 
   .container {
     max-width: variables.$max-width;
     margin: 0 auto;
+    padding-top: 6rem;
   }
 
   h1 {
@@ -78,11 +78,11 @@
     background-color: variables.$fondo-cards;
     border-radius: 8px;
     padding: variables.$spacing;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: calc(100vh - 300px);
-    min-height: 500px;
+    min-height: 800px;
 
     @media (max-width: variables.$tablet) {
       height: calc(100vh - 250px);

@@ -8,10 +8,11 @@
   color: variables.$texto-claro;
   padding: variables.$spacing * 2;
   text-align: center;
-
+  padding-top: 6rem;
   h1 {
-    font-size: 2rem;
-    margin-bottom: variables.$spacing;
+    color: variables.$texto-claro;
+    font-size: clamp(1.7rem, 5vw, 2.5rem);
+    margin-bottom: variables.$spacing * 2;
   }
 
   p {

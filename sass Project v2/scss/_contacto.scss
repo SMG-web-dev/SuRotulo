@@ -6,6 +6,7 @@
   padding: calc(variables.$spacing * 2);
   background-color: variables.$fondo-oscuro;
   min-height: 85vh;
+  padding-top: 6rem;
 
   .container {
     max-width: variables.$max-width;

@@ -19,48 +19,9 @@ body {
   background-color: variables.$fondo-oscuro;
   color: variables.$texto-claro;
   transition: background-color 0.3s, color 0.3s;
-
-  &.light-theme {
-    background-color: variables.$fondo-claro;
-    color: variables.$texto-oscuro;
-  }
-
-  @media (min-width: variables.$tablet) {
-    font-size: 1.125rem;
-  }
-
-  @media (min-width: variables.$desktop) {
-    font-size: 1.25rem;
-  }
 }
 
-// Estilos específicos para el modo claro
-body.light-theme {
-  .hero,
-  .productos-hero,
-  .servicios-hero,
-  .contacto,
-  .documents-container {
-    background-color: variables.$fondo-claro;
-    color: variables.$texto-oscuro;
-
-    h1,
-    h2,
-    h3 {
-      color: variables.$texto-oscuro;
-    }
-
-    p {
-      color: variables.$texto-oscuro-gris;
-    }
-  }
-
-  .articulos article,
-  .servicio-card,
-  .contact-form,
-  .info-card,
-  .document-buttons .document-btn {
-    background-color: variables.$fondo-claro;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Edge */
+  scrollbar-width: none; /* Firefox */
 }

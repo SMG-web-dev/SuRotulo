@@ -6,12 +6,13 @@
 .articulos {
   padding: variables.$spacing * 2;
   background-color: variables.$fondo-oscuro;
-  margin: variables.$spacing * 3 auto variables.$spacing * 5;
+  margin: variables.$spacing auto variables.$spacing * 5;
   max-width: variables.$max-width * 1.5;
+  padding-top: 6rem;
 
   h1 {
     color: variables.$texto-claro;
-    font-size: 2rem;
+    font-size: clamp(1.7rem, 5vw, 2.5rem);
     margin-bottom: variables.$spacing * 2;
   }
 
@@ -19,7 +20,7 @@
     color: variables.$texto-claro;
     font-size: clamp(1.7rem, 5vw, 2.5rem);
     text-align: center;
-    margin-bottom: variables.$spacing * 4;
+    margin-bottom: variables.$spacing * 3;
     font-weight: 700;
     font-family: "GeistVF", sans-serif;
     line-height: 1.2;
@@ -36,18 +37,18 @@
 
   .articulos-grid {
     display: grid;
-    grid-template-columns: 1fr;
     gap: variables.$spacing * 2;
 
     @media (min-width: variables.$mobile) {
       grid-template-columns: repeat(1, 1fr);
     }
 
-    @media (min-width: variables.$desktop) {
-      grid-template-columns: repeat(4, 1fr);
-    }
     @media (min-width: variables.$tablet) {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: variables.$desktop) {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
@@ -146,7 +147,7 @@
   display: flex;
   flex-direction: column;
   gap: variables.$spacing;
-
+  margin-bottom: variables.$spacing * 2;
   @media (min-width: variables.$mobile) {
     flex-direction: row;
   }
