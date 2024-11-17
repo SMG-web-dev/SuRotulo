@@ -6,25 +6,11 @@
   padding: calc(variables.$spacing * 2);
   background-color: variables.$fondo-oscuro;
   min-height: 85vh;
-  padding-top: 6rem;
+  padding-top: 7rem;
 
   .container {
     max-width: variables.$max-width;
     margin: 0 auto;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-    color: variables.$texto-claro;
-    text-align: center;
-    margin-bottom: variables.$spacing;
-  }
-
-  .subtitle {
-    color: variables.$texto-claro-gris;
-    text-align: center;
-    margin-bottom: calc(variables.$spacing * 3);
-    font-size: 1.1rem;
   }
 
   .content-wrapper {

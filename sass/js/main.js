@@ -1,5 +1,5 @@
 import { setupAnimations } from './animations.js';
-import { setupDocuments } from './documents.js';;
+import { setupDocuments } from './documents.js';
 import { Footer } from './footer.js';
 import { Header } from './header.js';
 
@@ -34,47 +34,56 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(component);
     });
 
-    // Mantener componentes en memoria
-    keepInMemory('su-header');
-    keepInMemory('su-footer');
+    // Configurar navegación dinámica
+    setupDynamicNavigation();
 });
 
-// Función para mantener componentes en memoria
-function keepInMemory(selector) {
-    const element = document.querySelector(selector);
-    if (element) {
-        const clone = element.cloneNode(true);
-        clone.style.display = 'none';
-        document.body.appendChild(clone);
-    }
+// Configurar navegación dinámica
+function setupDynamicNavigation() {
+    // Manejar la navegación del historial
+    window.addEventListener('popstate', () => {
+        changePage(window.location.href, false);
+    });
+
+    // Interceptar clics en enlaces internos
+    document.addEventListener('click', (event) => {
+        if (event.target.tagName === 'A' && event.target.href.startsWith(window.location.origin)) {
+            event.preventDefault();
+            changePage(event.target.href);
+        }
+    });
 }
 
 // Función para cambiar de página sin recargar
-function changePage(url) {
+function changePage(url, pushState = true) {
     fetch(url)
         .then(response => response.text())
         .then(html => {
             const parser = new DOMParser();
             const newDocument = parser.parseFromString(html, 'text/html');
+
+            // Actualizar el contenido principal
             const newContent = newDocument.querySelector('main');
             const currentContent = document.querySelector('main');
-            currentContent.replaceWith(newContent);
-            history.pushState(null, '', url);
+            if (newContent && currentContent) {
+                currentContent.replaceWith(newContent);
+            }
+
+            // Actualizar el footer
+            const newFooter = newDocument.querySelector('su-footer');
+            const currentFooter = document.querySelector('su-footer');
+            if (newFooter && currentFooter) {
+                currentFooter.replaceWith(newFooter);
+            }
+
+            // Actualizar la URL en el historial
+            if (pushState) {
+                history.pushState(null, '', url);
+            }
+
+            // Reconfigurar scripts y animaciones
             setupAnimations();
-            setupDocuments(); // Add this line to setup documents after page change
+            setupDocuments();
         })
         .catch(error => console.error('Error al cambiar de página:', error));
 }
-
-// Manejar la navegación del historial
-window.addEventListener('popstate', () => {
-    changePage(window.location.href);
-});
-
-// Interceptar clics en enlaces internos
-document.addEventListener('click', (event) => {
-    if (event.target.tagName === 'A' && event.target.href.startsWith(window.location.origin)) {
-        event.preventDefault();
-        changePage(event.target.href);
-    }
-});

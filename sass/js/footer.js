@@ -14,6 +14,9 @@ export class Footer extends HTMLElement {
         ${this.renderFooterBottom()}
       </footer>
     `;
+
+    // Configurar navegación con smooth scroll y actualización del contenido
+    this.setupFooterNavigation();
   }
 
   renderBrand() {
@@ -71,7 +74,7 @@ export class Footer extends HTMLElement {
 
     const links = pages
       .filter(page => page.href !== currentPage)
-      .map(page => `<a href="${page.href}">${page.text}</a>`)
+      .map(page => `<a href="${page.href}" class="footer-navlink">${page.text}</a>`)
       .join('');
 
     return `
@@ -112,5 +115,44 @@ export class Footer extends HTMLElement {
       </div>
     `;
   }
-}
 
+  setupFooterNavigation() {
+    // Interceptar clics en los enlaces del footer
+    const navLinks = this.querySelectorAll('.footer-navlink');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const url = link.href;
+
+        // Cambiar la página y realizar un smooth scroll al inicio
+        this.changePage(url).then(() => {
+          document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    });
+  }
+
+  async changePage(url) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Error al cargar la página');
+
+      const html = await response.text();
+      const parser = new DOMParser();
+      const newDocument = parser.parseFromString(html, 'text/html');
+
+      // Reemplazar el contenido principal
+      const newContent = newDocument.querySelector('main');
+      const currentContent = document.querySelector('main');
+      if (currentContent && newContent) {
+        currentContent.replaceWith(newContent);
+      }
+
+      // Actualizar el estado del historial y el footer
+      history.pushState(null, '', url);
+      this.connectedCallback(); // Reconstruye el footer dinámicamente
+    } catch (error) {
+      console.error('Error al cambiar de página:', error);
+    }
+  }
+}

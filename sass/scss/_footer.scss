@@ -20,8 +20,8 @@ footer {
     margin-bottom: variables.$spacing * 2;
 
     .logo img {
-      max-width: 10em;
-      max-height: 5em;
+      max-width: 14em;
+      max-height: 7em;
       margin-bottom: variables.$spacing;
 
       @media (min-width: variables.$desktop) {
@@ -100,6 +100,7 @@ footer {
 
       input[type="email"] {
         background-color: transparent;
+        margin-top: variables.$spacing;
         border: 1px solid variables.$borde-oscuro;
         border-radius: 0.375rem;
         padding: variables.$spacing * 0.75 variables.$spacing;
