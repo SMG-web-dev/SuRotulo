@@ -1,0 +1,218 @@
+// _articulos.scss
+@use "sass:color";
+@use "sass:math";
+@use "variables";
+
+.articulos {
+  padding: variables.$spacing * 2;
+  background-color: variables.$fondo-oscuro;
+  margin: variables.$spacing auto variables.$spacing * 5;
+  max-width: variables.$max-width * 1.5;
+  padding-top: 6rem;
+
+  h1 {
+    color: variables.$texto-claro;
+    font-size: clamp(1.7rem, 5vw, 2.5rem);
+    margin-bottom: variables.$spacing * 2;
+  }
+
+  .section-title {
+    color: variables.$texto-claro;
+    font-size: clamp(1.7rem, 5vw, 2.5rem);
+    text-align: center;
+    margin-bottom: variables.$spacing * 3;
+    font-weight: 700;
+    font-family: "GeistVF", sans-serif;
+    line-height: 1.2;
+    padding: 0 variables.$spacing;
+
+    @media (min-width: variables.$tablet) {
+      font-size: 2rem;
+    }
+
+    @media (min-width: variables.$desktop) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .articulos-grid {
+    display: grid;
+    gap: variables.$spacing * 2;
+
+    @media (min-width: variables.$mobile) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    @media (min-width: variables.$tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: variables.$desktop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  article {
+    background-color: variables.$fondo-cards;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+      img {
+        transform: scale(1.05);
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 20rem;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+
+      @media (max-width: variables.$mobile) {
+        height: 10rem;
+      }
+      @media (max-width: variables.$tablet) {
+        height: 15rem;
+      }
+    }
+
+    .article-content {
+      padding: variables.$spacing * 1.5;
+    }
+
+    .article-category {
+      position: absolute;
+      top: variables.$spacing;
+      right: variables.$spacing;
+      background-color: color.adjust(variables.$fondo-oscuro, $alpha: -0.2);
+      color: variables.$texto-claro;
+      padding: math.div(variables.$spacing, 2) variables.$spacing;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      backdrop-filter: blur(4px);
+    }
+
+    h3 {
+      color: variables.$texto-claro;
+      font-size: 2rem;
+      margin-bottom: variables.$spacing;
+      font-weight: 600;
+
+      @media (max-width: variables.$tablet) {
+        font-size: 1.25rem;
+      }
+    }
+
+    p {
+      color: variables.$texto-claro-gris;
+      margin-bottom: variables.$spacing * 1.5;
+      line-height: 1.6;
+    }
+
+    .article-link {
+      display: inline-block;
+      color: variables.$primario;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 2px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: variables.$primario;
+        transition: width 0.3s ease;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.search-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing;
+  margin-bottom: variables.$spacing * 2;
+  @media (min-width: variables.$mobile) {
+    flex-direction: row;
+  }
+}
+
+.search-box {
+  flex: 1;
+  position: relative;
+
+  .search-icon {
+    position: absolute;
+    left: variables.$spacing;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    filter: variables.$filtro-white;
+  }
+
+  input {
+    width: 100%;
+    padding: variables.$spacing variables.$spacing * 3;
+    border-radius: 8px;
+    border: 1px solid variables.$borde-oscuro;
+    background-color: variables.$fondo-cards;
+    color: variables.$texto-claro;
+    transition: 0.5s;
+
+    &:focus {
+      transition: 0.5s;
+      outline: none;
+      border-color: variables.$primario;
+    }
+  }
+}
+
+.filter-box {
+  width: 100%;
+
+  @media (min-width: variables.$mobile) {
+    width: 200px;
+  }
+
+  select {
+    width: 100%;
+    padding: variables.$spacing;
+    border-radius: 8px;
+    border: 1px solid variables.$borde-oscuro;
+    background-color: variables.$fondo-cards;
+    color: variables.$texto-claro;
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:focus {
+      outline: none;
+      border-color: variables.$primario;
+      transition: 0.5s;
+    }
+  }
+}
+
+.only-tablet {
+  display: none;
+
+  @media (min-width: variables.$tablet) and (max-width: 1023px) {
+    display: block;
+  }
+}
