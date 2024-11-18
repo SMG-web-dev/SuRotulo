@@ -2,6 +2,7 @@ import { setupIntersectionObserver } from './utils/lazyLoad.js';
 import { setupDynamicNavigation } from './utils/navigation.js';
 import { Header } from './components/Header.js';
 import { Footer } from './components/Footer.js';
+import { setupDocuments } from './utils/documents.js';
 
 // Lazy load components
 const LazyAnimations = import('./utils/animations.js');
@@ -13,6 +14,7 @@ customElements.define('su-footer', Footer);
 document.addEventListener('DOMContentLoaded', async () => {
     setupIntersectionObserver();
     setupDynamicNavigation();
+    setupDocuments();
 
     const header = document.querySelector('su-header');
     header.addEventListener('navigate', (event) => changePage(event.detail.href));
