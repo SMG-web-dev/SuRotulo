@@ -1,0 +1,143 @@
+@use "sass:math";
+@use "sass:color";
+@use "variables";
+
+.contacto {
+  padding: calc(variables.$spacing * 2);
+  background-color: variables.$fondo-oscuro;
+  min-height: 85vh;
+  padding-top: 7rem;
+
+  .container {
+    max-width: variables.$max-width;
+    margin: 0 auto;
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: calc(variables.$spacing * 3);
+
+    @media (min-width: variables.$desktop) {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  .contact-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: calc(variables.$spacing * 1.5);
+    background-color: variables.$fondo-cards;
+    padding: variables.$spacing * 2;
+    border-radius: 8px;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: variables.$spacing * 0.5;
+
+      label {
+        color: variables.$texto-claro;
+        font-size: 1rem;
+        font-family: "GeistVFmono", monospace;
+      }
+
+      input,
+      select,
+      textarea {
+        background-color: color.adjust(variables.$fondo-oscuro, $alpha: -0.5);
+        color: variables.$texto-claro;
+        padding: 0.75rem;
+        border-radius: 5px;
+        border: 1px solid variables.$borde-oscuro;
+        font-family: "GeistVF", sans-serif;
+        font-size: 1rem;
+
+        &:focus {
+          border-color: variables.$primario;
+          outline: none;
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+    }
+
+    .submit-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: variables.$spacing;
+      background-color: variables.$primario;
+      color: variables.$texto-claro;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: "GeistVF", sans-serif;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+      margin-top: variables.$spacing;
+
+      img {
+        filter: variables.$filtro-blanco;
+      }
+
+      &:hover {
+        background-color: variables.$boton-primario-hover;
+      }
+    }
+  }
+
+  .contact-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: calc(variables.$spacing + 0.65rem);
+
+    @media (min-width: variables.$tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: variables.$desktop) {
+      grid-template-columns: 1fr;
+      min-width: 300px;
+    }
+
+    .info-card {
+      background-color: variables.$fondo-cards;
+      padding: (variables.$spacing * 1.5);
+      border-radius: 8px;
+
+      .icon {
+        display: flex;
+        align-items: center;
+        gap: variables.$spacing;
+        margin-bottom: variables.$spacing;
+
+        img {
+          filter: variables.$filtro-primario;
+        }
+
+        h3 {
+          color: variables.$texto-claro;
+          font-size: 1.2rem;
+          margin: 0;
+        }
+      }
+
+      p {
+        color: variables.$texto-claro-gris;
+        margin-bottom: variables.$spacing * 0.5;
+        font-size: 0.95rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

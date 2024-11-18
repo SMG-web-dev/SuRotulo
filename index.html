@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio - SuRótulo</title>
+    <link rel="stylesheet" href="./web/css/main.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.ico" />
+  </head>
+  <body>
+    <!-- Componente Header -->
+    <su-header></su-header>
+
+    <!-- Contenido principal -->
+    <main>
+      <section class="hero">
+        <video class="hero__video-bg" autoplay muted loop playsinline>
+          <source src="./public/vid/fitz2k.mp4" type="video/mp4" />
+          <source src="./public/vid/fitz480p.mp4" type="video/mp4" />
+        </video>
+        <h1>Transforme Su Visión En Realidad</h1>
+        <p>
+          Soluciones premium de fabricación de rótulos para empresas que exigen
+          la excelencia
+        </p>
+        <div class="buttons">
+          <a href="productos.html" class="primary-btn">
+            Explorar Productos
+            <img src="./public/svg/arrow-right.svg" alt="Flecha derecha" />
+          </a>
+          <a href="contacto.html" class="secondary-btn">
+            Solicitar Presupuesto
+            <img src="./public/svg/dollar-sign.svg" alt="Dolar SVG" />
+          </a>
+        </div>
+      </section>
+
+      <!-- Productos destacados -->
+      <section class="articulos">
+        <h1 class="section-title">Productos Destacados</h1>
+        <div class="articulos-grid">
+          <article>
+            <img src="./public/img/bö.webp" alt="Corpóreos de acero" />
+            <div class="article-content">
+              <span class="article-category">Luminosos</span>
+              <h2>Neones LED</h2>
+              <p>Luces led con base de metacrilato.</p>
+              <a href="#" class="article-link">Más Información</a>
+            </div>
+          </article>
+          <article>
+            <img
+              src="./public/img/rockstar.webp"
+              alt="Corpóreos LED Rockstar"
+            />
+            <div class="article-content">
+              <h2>Corpóreos LED</h2>
+              <p>
+                Corpóreos iluminados de bajo coste y gran impacto visual para
+                interiores.
+              </p>
+              <a href="#" class="article-link">Más Información</a>
+            </div>
+            <div class="article-category">Luminosos</div>
+          </article>
+
+          <article>
+            <img src="./public/img/viniloFitz.webp" alt="Vinilos viniloFitz" />
+            <div class="article-content">
+              <h2>Vinilos</h2>
+              <p>Vinilajes para todo tipo de cristales.</p>
+              <a href="#" class="article-link">Más Información</a>
+            </div>
+            <div class="article-category">Vinilajes</div>
+          </article>
+
+          <article class="only-tablet">
+            <img
+              src="./public/img/acero.webp"
+              alt="Corpóreos para exteriores"
+            />
+            <div class="article-content">
+              <span class="article-category">Rotulaciones</span>
+              <h2>Corpóreos para exteriores</h2>
+              <p>Corpóreos de todo tipo y tamaño cortados al milímetro.</p>
+              <a href="#" class="article-link">Más Información</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Componente Footer -->
+    <su-footer></su-footer>
+
+    <script type="module" src="./web/js/main.js"></script>
+    <script src="./web/js/video.js"></script>
+  </body>
+</html>

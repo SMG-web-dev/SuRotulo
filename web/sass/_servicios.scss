@@ -1,0 +1,104 @@
+// _servicios.scss
+@use "sass:color";
+@use "sass:math";
+@use "variables";
+
+.servicios-hero {
+  background-color: variables.$fondo-oscuro;
+  color: variables.$texto-claro;
+  padding: variables.$spacing * 2;
+  text-align: center;
+  padding-top: 7rem;
+}
+
+.servicios-grid {
+  background-color: variables.$fondo-oscuro;
+  padding: variables.$spacing;
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing;
+  max-width: variables.$max-width;
+  margin-top: -3rem;
+
+  @media (min-width: variables.$tablet) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: variables.$desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.servicio-card {
+  background-color: variables.$fondo-cards;
+  border-radius: 8px;
+  padding: variables.$spacing * 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .servicio-icon {
+    padding: variables.$spacing;
+    border-radius: 12px;
+    margin-bottom: variables.$spacing;
+    background-color: variables.$primario;
+
+    img {
+      filter: variables.$filtro-blanco;
+    }
+  }
+
+  h2 {
+    color: variables.$texto-claro;
+    font-size: 1.25rem;
+    margin-bottom: variables.$spacing * 0.5;
+  }
+
+  p {
+    color: variables.$texto-claro-gris;
+    margin: 0;
+  }
+}
+
+.contacto-cta {
+  background-color: variables.$primario;
+  color: variables.$texto-claro;
+  text-align: center;
+  padding: variables.$spacing * 2 variables.$spacing;
+  border-radius: 8px;
+  max-width: math.div(variables.$max-width, 2);
+  margin: variables.$spacing * 3 auto;
+
+  @media (max-width: variables.$tablet) {
+    margin: variables.$spacing * 3;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: variables.$spacing;
+  }
+
+  p {
+    margin-bottom: variables.$spacing * 2;
+  }
+
+  .btn-primary {
+    background-color: variables.$texto-claro;
+    color: variables.$primario;
+    padding: variables.$spacing variables.$spacing * 2;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: variables.$texto-claro;
+    }
+  }
+}
