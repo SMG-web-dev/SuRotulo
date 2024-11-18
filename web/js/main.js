@@ -1,98 +1,73 @@
-import { setupAnimations } from './animations.js';
-import { setupDocuments } from './documents.js';
-import { Footer } from './footer.js';
-import { Header } from './header.js';
+import { setupIntersectionObserver } from './utils/lazyLoad.js';
+import { setupDynamicNavigation } from './utils/navigation.js';
+import { Header } from './components/Header.js';
+import { Footer } from './components/Footer.js';
+
+// Lazy load components
+const LazyAnimations = import('./utils/animations.js');
+const LazyDocuments = import('./utils/documents.js');
 
 customElements.define('su-header', Header);
 customElements.define('su-footer', Footer);
 
-document.addEventListener('DOMContentLoaded', () => {
-    setupAnimations();
-    setupDocuments();
+document.addEventListener('DOMContentLoaded', async () => {
+    setupIntersectionObserver();
+    setupDynamicNavigation();
 
     const header = document.querySelector('su-header');
-    header.addEventListener('navigate', (event) => {
-        changePage(event.detail.href);
-    });
+    header.addEventListener('navigate', (event) => changePage(event.detail.href));
 
-    // Precarga de la imagen del logo
+    // Preload logo
     const logoImg = new Image();
     logoImg.src = './public/img/logo.png';
 
-    // Uso de IntersectionObserver para carga perezosa de componentes
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('loaded');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { rootMargin: '0px', threshold: 0.1 });
-
-    // Observar todos los componentes que necesitan carga perezosa
-    document.querySelectorAll('.lazy-load').forEach(component => {
-        observer.observe(component);
-    });
-
-    // Configurar navegación dinámica
-    setupDynamicNavigation();
+    // Initialize components based on current page
+    initializePageComponents();
 });
 
-// Configurar navegación dinámica
-function setupDynamicNavigation() {
-    // Manejar la navegación del historial
-    window.addEventListener('popstate', () => {
-        changePage(window.location.href, false);
-    });
+async function initializePageComponents() {
+    const currentPage = window.location.pathname.split("/").pop() || 'index.html';
 
-    // Interceptar clics en enlaces internos
-    document.addEventListener('click', (event) => {
-        if (event.target.tagName === 'A' && event.target.href.startsWith(window.location.origin)) {
-            event.preventDefault();
-            changePage(event.target.href);
+    if (currentPage === 'index.html') {
+        const { setupAnimations } = await LazyAnimations;
+        setupAnimations();
+    } else if (currentPage === 'documentos.html') {
+        const { setupDocuments } = await LazyDocuments;
+        setupDocuments();
+    }
+}
+
+async function changePage(url, pushState = true) {
+    try {
+        const response = await fetch(url);
+        const html = await response.text();
+        const parser = new DOMParser();
+        const newDocument = parser.parseFromString(html, 'text/html');
+
+        updateContent(newDocument);
+
+        if (pushState) {
+            history.pushState(null, '', url);
         }
-    });
+
+        initializePageComponents();
+
+        document.dispatchEvent(new CustomEvent('pageChanged', { detail: { url } }));
+    } catch (error) {
+        console.error('Error al cambiar de página:', error);
+    }
 }
 
-// Función para cambiar de página sin recargar
-function changePage(url, pushState = true) {
-    fetch(url)
-        .then(response => response.text())
-        .then(html => {
-            const parser = new DOMParser();
-            const newDocument = parser.parseFromString(html, 'text/html');
+function updateContent(newDocument) {
+    const newContent = newDocument.querySelector('main');
+    const currentContent = document.querySelector('main');
+    if (newContent && currentContent) {
+        currentContent.replaceWith(newContent);
+    }
 
-            // Actualizar el contenido principal
-            const newContent = newDocument.querySelector('main');
-            const currentContent = document.querySelector('main');
-            if (newContent && currentContent) {
-                currentContent.replaceWith(newContent);
-            }
-
-            // Actualizar el footer
-            const newFooter = newDocument.querySelector('su-footer');
-            const currentFooter = document.querySelector('su-footer');
-            if (newFooter && currentFooter) {
-                currentFooter.replaceWith(newFooter);
-            }
-
-            // Actualizar la URL en el historial
-            if (pushState) {
-                history.pushState(null, '', url);
-            }
-
-            // Reconfigurar scripts y animaciones
-            setupAnimations();
-            setupDocuments();
-
-            // Emitir un evento global de cambio de página
-            document.dispatchEvent(new CustomEvent('pageChanged', { detail: { url } }));
-
-            // Verificar si estamos en index.html para recargar el video responsivo
-            if (url.endsWith('index.html')) {
-                loadResponsiveVideo(); // Asegúrate de que esta función esté disponible globalmente
-            }
-        })
-        .catch(error => console.error('Error al cambiar de página:', error));
+    const newFooter = newDocument.querySelector('su-footer');
+    const currentFooter = document.querySelector('su-footer');
+    if (newFooter && currentFooter) {
+        currentFooter.replaceWith(newFooter);
+    }
 }
-
