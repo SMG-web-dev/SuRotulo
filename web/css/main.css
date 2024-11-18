@@ -101,7 +101,7 @@ header .navbar-container {
   margin: auto;
 }
 header .logo img {
-  height: auto;
+  max-width: 9.5em;
 }
 header nav {
   display: flex;

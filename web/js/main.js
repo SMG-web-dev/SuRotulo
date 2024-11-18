@@ -84,6 +84,15 @@ function changePage(url, pushState = true) {
             // Reconfigurar scripts y animaciones
             setupAnimations();
             setupDocuments();
+
+            // Emitir un evento global de cambio de página
+            document.dispatchEvent(new CustomEvent('pageChanged', { detail: { url } }));
+
+            // Verificar si estamos en index.html para recargar el video responsivo
+            if (url.endsWith('index.html')) {
+                loadResponsiveVideo(); // Asegúrate de que esta función esté disponible globalmente
+            }
         })
         .catch(error => console.error('Error al cambiar de página:', error));
 }
+

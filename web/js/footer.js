@@ -65,11 +65,11 @@ export class Footer extends HTMLElement {
 
   renderFooterNav(currentPage) {
     const pages = [
-      { href: 'index.html', text: 'Inicio' },
-      { href: 'productos.html', text: 'Productos' },
-      { href: 'servicios.html', text: 'Servicios' },
-      { href: 'contacto.html', text: 'Contacto' },
-      { href: 'documentos.html', text: 'Documentos' }
+      { href: 'index.html', text: '🏠 Inicio' },
+      { href: 'productos.html', text: '🛍️ Productos' },
+      { href: 'servicios.html', text: '💼 Servicios' },
+      { href: 'contacto.html', text: '📞 Contacto' },
+      { href: 'documentos.html', text: '📄 Documentos' }
     ];
 
     const links = pages
