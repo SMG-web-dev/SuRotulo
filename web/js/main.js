@@ -4,6 +4,7 @@ import { Header } from './components/Header.js';
 import { Footer } from './components/Footer.js';
 import { setupDocuments } from './utils/documents.js';
 
+if (performance.getEntriesByType("navigation")[0].type === "navigate") location.reload();
 // Lazy load components
 const LazyAnimations = import('./utils/animations.js');
 const LazyDocuments = import('./utils/documents.js');
@@ -29,7 +30,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function initializePageComponents() {
     const currentPage = window.location.pathname.split("/").pop() || 'index.html';
-
     if (currentPage === 'index.html') {
         const { setupAnimations } = await LazyAnimations;
         setupAnimations();
@@ -40,6 +40,7 @@ async function initializePageComponents() {
 }
 
 async function changePage(url, pushState = true) {
+	location.reload();
     try {
         const response = await fetch(url);
         const html = await response.text();

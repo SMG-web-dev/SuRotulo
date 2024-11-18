@@ -14,7 +14,6 @@ export class Footer extends HTMLElement {
           ${this.renderFooterBottom()}
         </footer>
       `;
-
         // Configurar navegación con smooth scroll y actualización del contenido
         this.setupFooterNavigation();
     }
@@ -85,6 +84,7 @@ export class Footer extends HTMLElement {
           </div>
         </div>
       `;
+	  location.reload();
     }
 
     renderFooterActions() {
