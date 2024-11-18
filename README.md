@@ -55,7 +55,7 @@ El proyecto está organizado de la siguiente manera:
 ### **1. Clonar el repositorio**
 
 ```bash
-git clone [<URL-DEL-REPOSITORIO>](https://github.com/SMG-web-dev/SuRotulo)
+git clone https://github.com/SMG-web-dev/SuRotulo
 ```
 
 ### **2. Instalar dependencias (opcional)**
