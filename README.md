@@ -1,8 +1,8 @@
-# Proyecto: SuRótulo - Diseño de Interfaces Web
+# 🚀 Proyecto: SuRótulo - Diseño de Interfaces Web
 
 Este proyecto es un sistema de diseño web dinámico y responsivo creado para **SuRótulo**, utilizando tecnologías como **HTML**, **SCSS** y **JavaScript**. El proyecto organiza eficientemente recursos y lógica para crear una experiencia de usuario fluida y visualmente atractiva.
 
-## Estructura del proyecto
+## 📁 Estructura del proyecto
 
 El proyecto está organizado de la siguiente manera:
 
@@ -47,7 +47,7 @@ El proyecto está organizado de la siguiente manera:
 
 ---
 
-## Instalación y configuración
+## 🛠️ Instalación y configuración
 
 ### **1. Clonar el repositorio**
 
@@ -69,11 +69,11 @@ sass web/sass/main.scss web/css/main.css
 
 ### **4. Abrir la aplicación**
 
-Abre el archivo `index.html` en tu navegador para explorar las funcionalidades.
+Abre el archivo `index.html` en un servidor local en tu navegador para explorar las funcionalidades.
 
 ---
 
-## Características principales
+## ✨ Características principales
 
 - **SCSS estructurado:** Modularización con estilos personalizados para cada sección.
 - **JavaScript dinámico:**
@@ -85,18 +85,19 @@ Abre el archivo `index.html` en tu navegador para explorar las funcionalidades.
 
 ---
 
-## Próximos pasos
+## 🚀 Próximos pasos
 
-- Implementar lógica para cargar videos en resolución adaptativa según el dispositivo.
 - Optimizar el rendimiento de los recursos gráficos para mejorar la velocidad de carga.
 - Añadir más interactividad a la interfaz mediante animaciones avanzadas.
+- Funcionamiento de formularios y logica backend.
+- Sandbox para crear y enviar bocetos de neones led.
 
 ---
 
-## Licencia
+## 📝 Licencia
 
 Este proyecto está licenciado bajo los términos de la **MIT License**. Consulta el archivo `LICENSE` para más detalles.
 
 ---
 
-**Autor:** [Tu Nombre o Usuario de GitHub]
+**Autor:** SMG-web-dev
