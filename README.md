@@ -18,13 +18,16 @@ El proyecto está organizado de la siguiente manera:
 │   │   ├── main.css   # Archivo CSS principal
 │   │   └── main.css.map # Archivo para depuración SCSS
 │   └── js/            # Archivos JavaScript
-│       ├── animations.js  # Animaciones (menú toggle, etc.)
-│       ├── video.js       # Video hero dinámico
-│       ├── documents.js   # Lógica para PDFs dinámicos
-│       ├── footer.js      # Footer dinámico
-│       ├── header.js      # Header dinámico
-│       ├── main.js        # Archivo principal que importa la lógica
-│       └── video.js       # Controlador de videos
+│       ├── components/    # Componentes JavaScript
+│       │   ├── Footer.js      # Footer dinámico
+│       │   └── Header.js      # Header dinámico
+│       ├── utils/     # Archivos de utilidad JavaScript
+│       │   ├── animations.js  # Animaciones (menú toggle, etc.)
+│       │   ├── performance.js # Mejoras de rendimiento
+│       │   ├── navigation.js  # Navegación entre menús y páginas
+│       │   ├── lazyLoad.js    # Carga vaga para optimización
+│       │   └── documents.js   # Lógica para PDFs dinámicos
+│       └── main.js        # Archivo principal que importa la lógica
 ├── sass/              # Archivos SCSS para estilos personalizados
 │   ├── _variables.scss  # Variables globales para estilos
 │   ├── _reset.scss      # Estilos iniciales base
