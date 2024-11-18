@@ -470,8 +470,9 @@ footer .footer-bottom a:hover {
 .articulos {
   padding: 2rem;
   background-color: #1f2937;
-  max-width: 1800px;
+  max-width: 100%;
   padding-top: 7rem;
+  margin: auto;
 }
 .articulos .articulos-grid {
   display: grid;
@@ -661,6 +662,8 @@ footer .footer-bottom a:hover {
   gap: 1rem;
   max-width: 1200px;
   margin-top: -3rem;
+  margin-bottom: 5rem;
+  max-width: 100%;
 }
 @media (min-width: 768px) {
   .servicios-grid {
@@ -703,41 +706,6 @@ footer .footer-bottom a:hover {
 .servicio-card p {
   color: #a3a3a3;
   margin: 0;
-}
-
-.contacto-cta {
-  background-color: #9333ea;
-  color: #ffffff;
-  text-align: center;
-  padding: 2rem 1rem;
-  border-radius: 8px;
-  max-width: 600px;
-  margin: 3rem auto;
-}
-@media (max-width: 768px) {
-  .contacto-cta {
-    margin: 3rem;
-  }
-}
-.contacto-cta h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-.contacto-cta p {
-  margin-bottom: 2rem;
-}
-.contacto-cta .btn-primary {
-  background-color: #ffffff;
-  color: #9333ea;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-}
-.contacto-cta .btn-primary:hover {
-  background-color: #ffffff;
 }
 
 .contacto {
