@@ -55,7 +55,7 @@ El proyecto está organizado de la siguiente manera:
 ### **1. Clonar el repositorio**
 
 ```bash
-git clone <URL-DEL-REPOSITORIO>
+git clone [<URL-DEL-REPOSITORIO>](https://github.com/SMG-web-dev/SuRotulo)
 ```
 
 ### **2. Instalar dependencias (opcional)**
@@ -90,9 +90,9 @@ Abre el archivo `index.html` en un servidor local en tu navegador para explorar 
 
 ## 🚀 Próximos pasos
 
-- Optimizar el rendimiento de los recursos gráficos para mejorar la velocidad de carga.
+- Optimizar aún más el rendimiento de los recursos gráficos para mejorar la velocidad de carga.
 - Añadir más interactividad a la interfaz mediante animaciones avanzadas.
-- Funcionamiento de formularios y logica backend.
+- Funcionamiento de formularios y lógica backend.
 - Sandbox para crear y enviar bocetos de neones led.
 
 ---
