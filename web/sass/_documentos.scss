@@ -70,7 +70,7 @@
     background-color: variables.$fondo-cards;
     border-radius: 8px;
     padding: variables.$spacing;
-    max-width: 1100px;
+    max-width: 100%;
     margin: variables.$spacing * 2;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: calc(150vh - 300px);

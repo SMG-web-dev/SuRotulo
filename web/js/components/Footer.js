@@ -1,9 +1,9 @@
 export class Footer extends HTMLElement {
-    connectedCallback() {
-        const currentPage = window.location.pathname.split("/").pop();
-        const isContactPage = currentPage === 'contacto.html';
+  connectedCallback() {
+    const currentPage = window.location.pathname.split("/").pop();
+    const isContactPage = currentPage === 'contacto.html';
 
-        this.innerHTML = `
+    this.innerHTML = `
         <footer>
           <div class="footer-content">
             ${this.renderBrand()}
@@ -14,12 +14,12 @@ export class Footer extends HTMLElement {
           ${this.renderFooterBottom()}
         </footer>
       `;
-        // Configurar navegación con smooth scroll y actualización del contenido
-        this.setupFooterNavigation();
-    }
+    // Configurar navegación con smooth scroll y actualización del contenido
+    this.setupFooterNavigation();
+  }
 
-    renderBrand() {
-        return `
+  renderBrand() {
+    return `
         <div class="brand">
           <div class="logo">
             <img src="./public/img/logo.png" alt="SuRótulo Logo" />
@@ -38,10 +38,10 @@ export class Footer extends HTMLElement {
           </div>
         </div>
       `;
-    }
+  }
 
-    renderContactSection() {
-        return `
+  renderContactSection() {
+    return `
         <div class="contact">
           <h3>Contacto</h3>
           <div class="contact-info">
@@ -60,23 +60,23 @@ export class Footer extends HTMLElement {
           </div>
         </div>
       `;
-    }
+  }
 
-    renderFooterNav(currentPage) {
-        const pages = [
-            { href: 'index.html', text: '🏠 Inicio' },
-            { href: 'productos.html', text: '🛍️ Productos' },
-            { href: 'servicios.html', text: '💼 Servicios' },
-            { href: 'contacto.html', text: '📞 Contacto' },
-            { href: 'documentos.html', text: '📄 Documentos' }
-        ];
+  renderFooterNav(currentPage) {
+    const pages = [
+      { href: 'index.html', text: '🏠 Inicio' },
+      { href: 'productos.html', text: '🛍️ Productos' },
+      { href: 'servicios.html', text: '💼 Servicios' },
+      { href: 'contacto.html', text: '📞 Contacto' },
+      { href: 'documentos.html', text: '📄 Documentos' }
+    ];
 
-        const links = pages
-            .filter(page => page.href !== currentPage)
-            .map(page => `<a href="${page.href}" class="footer-navlink">${page.text}</a>`)
-            .join('');
+    const links = pages
+      .filter(page => page.href !== currentPage)
+      .map(page => `<a href="${page.href}" class="footer-navlink">${page.text}</a>`)
+      .join('');
 
-        return `
+    return `
         <div class="footer-nav">
           <div class="quick-links">
             <h3>Enlaces Rápidos</h3>
@@ -84,11 +84,10 @@ export class Footer extends HTMLElement {
           </div>
         </div>
       `;
-	  location.reload();
-    }
+  }
 
-    renderFooterActions() {
-        return `
+  renderFooterActions() {
+    return `
         <div class="footer-actions">
           <div class="newsletter">
             <h3>Boletín</h3>
@@ -100,10 +99,10 @@ export class Footer extends HTMLElement {
           </div>
         </div>
       `;
-    }
+  }
 
-    renderFooterBottom() {
-        return `
+  renderFooterBottom() {
+    return `
         <div class="footer-bottom">
           <p>&copy; 2023 SuRótulo. Todos los derechos reservados.</p>
           <p>
@@ -114,45 +113,47 @@ export class Footer extends HTMLElement {
           </p>
         </div>
       `;
-    }
+  }
 
-    setupFooterNavigation() {
-        // Interceptar clics en los enlaces del footer
-        const navLinks = this.querySelectorAll('.footer-navlink');
-        navLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const url = link.href;
+  setupFooterNavigation() {
+    // Interceptar clics en los enlaces del footer
+    const navLinks = this.querySelectorAll('.footer-navlink');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const url = link.href;
 
-                // Cambiar la página y realizar un smooth scroll al inicio
-                this.changePage(url).then(() => {
-                    document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                });
-            });
+        // Cambiar la página y realizar un smooth scroll al inicio
+        this.changePage(url).then(() => {
+          document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          location.reload();
         });
+      });
+    });
+
+  }
+
+  async changePage(url) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Error al cargar la página');
+
+      const html = await response.text();
+      const parser = new DOMParser();
+      const newDocument = parser.parseFromString(html, 'text/html');
+
+      // Reemplazar el contenido principal
+      const newContent = newDocument.querySelector('main');
+      const currentContent = document.querySelector('main');
+      if (currentContent && newContent) {
+        currentContent.replaceWith(newContent);
+      }
+
+      // Actualizar el estado del historial y el footer
+      history.pushState(null, '', url);
+      this.connectedCallback(); // Reconstruye el footer dinámicamente
+    } catch (error) {
+      console.error('Error al cambiar de página:', error);
     }
-
-    async changePage(url) {
-        try {
-            const response = await fetch(url);
-            if (!response.ok) throw new Error('Error al cargar la página');
-
-            const html = await response.text();
-            const parser = new DOMParser();
-            const newDocument = parser.parseFromString(html, 'text/html');
-
-            // Reemplazar el contenido principal
-            const newContent = newDocument.querySelector('main');
-            const currentContent = document.querySelector('main');
-            if (currentContent && newContent) {
-                currentContent.replaceWith(newContent);
-            }
-
-            // Actualizar el estado del historial y el footer
-            history.pushState(null, '', url);
-            this.connectedCallback(); // Reconstruye el footer dinámicamente
-        } catch (error) {
-            console.error('Error al cambiar de página:', error);
-        }
-    }
+  }
 }
