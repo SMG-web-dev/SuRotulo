@@ -901,6 +901,7 @@ footer .footer-bottom a:hover {
   margin: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   height: calc(150vh - 300px);
+  transition: height 0.3s ease;
 }
 @media (max-width: 768px) {
   .documents-container .pdf-container {
@@ -908,11 +909,9 @@ footer .footer-bottom a:hover {
     max-height: 125px;
   }
 }
-@media all and (-webkit-touch-callout: none) and (not (hover: hover)) {
-  .documents-container .pdf-container {
-    max-width: 100%;
-    height: calc(150vh - 300px);
-  }
+.documents-container .pdf-container.ios {
+  height: calc(150vh - 300px);
+  max-height: none;
 }
 .documents-container .pdf-container #pdf-viewer {
   width: 100%;

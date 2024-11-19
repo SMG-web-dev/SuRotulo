@@ -74,15 +74,16 @@
     margin: variables.$spacing * 2;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: calc(150vh - 300px);
+    transition: height 0.3s ease;
 
     @media (max-width: variables.$tablet) {
       height: calc(100vh - 250px);
       max-height: 125px;
     }
 
-    @media all and (-webkit-touch-callout: none) and (not (hover: hover)) {
-      max-width: 100%;
+    &.ios {
       height: calc(150vh - 300px);
+      max-height: none;
     }
 
     #pdf-viewer {
