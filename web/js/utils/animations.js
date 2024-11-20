@@ -10,8 +10,13 @@ function setupHeaderScroll() {
     const header = document.querySelector('header');
     const throttledScroll = throttle(() => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        header.classList.toggle('header-hidden', scrollTop > lastScrollTop);
-        header.classList.toggle('header-visible', scrollTop <= lastScrollTop);
+        if (scrollTop > lastScrollTop) {
+            header.classList.add('header-hidden');
+            header.classList.remove('header-visible');
+        } else {
+            header.classList.remove('header-hidden');
+            header.classList.add('header-visible');
+        }
         lastScrollTop = scrollTop;
     }, 100);
 

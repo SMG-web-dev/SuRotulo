@@ -2,20 +2,18 @@ export function setupIntersectionObserver() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('loaded');
-                if (entry.target.tagName === 'IMG') {
-                    entry.target.src = entry.target.dataset.src;
+                const target = entry.target;
+                target.classList.add('loaded');
+                if (target.tagName === 'IMG' && target.dataset.src) {
+                    target.src = target.dataset.src;
+                    target.removeAttribute('data-src');
                 }
-                observer.unobserve(entry.target);
+                observer.unobserve(target);
             }
         });
-    }, { rootMargin: '0px', threshold: 0.1 });
+    }, { rootMargin: '50px', threshold: 0.1 });
 
-    document.querySelectorAll('.lazy-load').forEach(component => {
-        observer.observe(component);
-    });
-
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        observer.observe(img);
+    document.querySelectorAll('.lazy-load, img[data-src]').forEach(element => {
+        observer.observe(element);
     });
 }

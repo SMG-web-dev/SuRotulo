@@ -24,7 +24,7 @@ export class Header extends HTMLElement {
     }
 
     createHeaderHTML() {
-        const navLinks = this.navLinks.map(link => 
+        const navLinks = this.navLinks.map(link =>
             `<a href="${link.href}" class="nav-link">${link.text}</a>`
         ).join('');
 
@@ -33,13 +33,13 @@ export class Header extends HTMLElement {
                 <div class="navbar-container">
                     <div class="logo">
                         <a href="/" class="logo-link">
-                            <img src="./public/img/logo.png" alt="SuRótulo Logo" loading="lazy" />
+                            <img src="./public/img/logo.png" alt="SuRótulo Logo" loading="lazy" width="150" height="50" />
                         </a>
                     </div>
                     <nav>${navLinks}</nav>
                     <div class="header-actions">
                         <button class="menu-toggle" aria-label="Menú" aria-expanded="false">
-                            <img src="./public/svg/menu.svg" alt="Menú" />
+                            <img src="./public/svg/menu.svg" alt="Menú" width="24" height="24" />
                         </button>
                     </div>
                 </div>
@@ -48,7 +48,8 @@ export class Header extends HTMLElement {
     }
 
     setupEventListeners() {
-        this.querySelector('.menu-toggle').addEventListener('click', this.toggleMenu.bind(this));
+        const menuToggle = this.querySelector('.menu-toggle');
+        menuToggle.addEventListener('click', this.toggleMenu.bind(this));
         document.addEventListener('click', this.closeMenuOutside.bind(this));
         this.setupNavLinks();
     }
@@ -71,9 +72,9 @@ export class Header extends HTMLElement {
         const menuToggle = this.querySelector('.menu-toggle');
         nav.classList.toggle('show-mobile-nav', this.isOpen);
         menuToggle.setAttribute('aria-expanded', this.isOpen.toString());
-        menuToggle.innerHTML = this.isOpen 
-            ? '<img src="./public/svg/x.svg" alt="Cerrar" />' 
-            : '<img src="./public/svg/menu.svg" alt="Menú" />';
+        menuToggle.innerHTML = this.isOpen
+            ? '<img src="./public/svg/x.svg" alt="Cerrar" width="24" height="24" />'
+            : '<img src="./public/svg/menu.svg" alt="Menú" width="24" height="24" />';
     }
 
     setupNavLinks() {

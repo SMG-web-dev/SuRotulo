@@ -5,45 +5,77 @@ import { Footer } from './components/Footer.js';
 import { setupDocuments } from './utils/documents.js';
 import { optimizeImage, downloadImage, debounce, throttle } from './utils/performance.js';
 
-if (performance.getEntriesByType("navigation")[0].type === "navigate") location.reload();
-// Lazy load components
-const LazyAnimations = import('./utils/animations.js');
-const LazyDocuments = import('./utils/documents.js');
+// Preload critical resources
+const preloadResources = () => {
+    const criticalResources = [
+        { as: 'style', href: '/path/to/critical.css' },
+        { as: 'script', href: '/path/to/critical.js' },
+        { as: 'image', href: './public/img/logo.png' },
+    ];
 
+    criticalResources.forEach(resource => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = resource.as;
+        link.href = resource.href;
+        document.head.appendChild(link);
+    });
+};
+
+// Define custom elements
 customElements.define('su-header', Header);
 customElements.define('su-footer', Footer);
 
-document.addEventListener('DOMContentLoaded', async () => {
+// Use async IIFE to avoid blocking the main thread
+(async () => {
+    // Preload critical resources
+    preloadResources();
+
+    // Setup intersection observer for lazy loading
     setupIntersectionObserver();
+
+    // Setup dynamic navigation
     setupDynamicNavigation();
-    setupDocuments();
 
+    // Setup documents (if on the documents page)
+    if (window.location.pathname.includes('documentos.html')) {
+        setupDocuments();
+    }
+
+    // Lazy load non-critical modules
+    const [{ setupAnimations }, { default: LazyDocuments }] = await Promise.all([
+        import('./utils/animations.js'),
+        import('./utils/documents.js')
+    ]);
+
+    // Setup header navigation
     const header = document.querySelector('su-header');
-    header.addEventListener('navigate', (event) => changePage(event.detail.href));
+    if (header) {
+        header.addEventListener('navigate', (event) => {
+            changePage(event.detail.href);
+        });
+    }
 
-    // Preload logo
-    const logoImg = new Image();
-    logoImg.src = './public/img/logo.png';
+    // Initialize page-specific components
+    initializePageComponents(setupAnimations, LazyDocuments);
 
-    // Initialize components based on current page
-    initializePageComponents();
-});
+    // Setup event listeners
+    setupEventListeners();
+})();
 
-async function initializePageComponents() {
+function initializePageComponents(setupAnimations, LazyDocuments) {
     const currentPage = window.location.pathname.split("/").pop() || 'index.html';
     if (currentPage === 'index.html') {
-        const { setupAnimations } = await LazyAnimations;
         setupAnimations();
     } else if (currentPage === 'documentos.html') {
-        const { setupDocuments } = await LazyDocuments;
-        setupDocuments();
+        LazyDocuments();
     }
 }
 
 async function changePage(url, pushState = true) {
-    location.reload();
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, { method: 'GET', cache: 'no-cache' });
+        if (!response.ok) throw new Error('Network response was not ok');
         const html = await response.text();
         const parser = new DOMParser();
         const newDocument = parser.parseFromString(html, 'text/html');
@@ -74,36 +106,58 @@ function updateContent(newDocument) {
     if (newFooter && currentFooter) {
         currentFooter.replaceWith(newFooter);
     }
+
+    // Update the header active link
+    const header = document.querySelector('su-header');
+    if (header) {
+        header.setActiveLink(window.location.pathname.split("/").pop() || 'index.html');
+    }
 }
 
-// Escucha el evento de selección de archivo
-document.getElementById('upload').addEventListener('change', async (event) => {
+function setupEventListeners() {
+    // Optimize image upload
+    const uploadInput = document.getElementById('upload');
+    if (uploadInput) {
+        uploadInput.addEventListener('change', handleImageUpload);
+    }
+
+    // Throttle scroll events
+    const throttledScroll = throttle(() => {
+        // Handle scroll events
+        console.log('Scroll event throttled');
+    }, 100);
+
+    // Debounce resize events
+    const debouncedResize = debounce(() => {
+        // Handle resize events
+        console.log('Resize event debounced');
+    }, 250);
+
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+    window.addEventListener('resize', debouncedResize, { passive: true });
+
+    // Implement requestIdleCallback for non-critical tasks
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(performNonCriticalTasks);
+    } else {
+        setTimeout(performNonCriticalTasks, 1);
+    }
+}
+
+async function handleImageUpload(event) {
     const file = event.target.files[0];
     if (!file) return;
 
     try {
-        // Optimiza el archivo a formato .webp
         const optimizedBlob = await optimizeImage(file, 'image/webp', 0.7);
-
-        // Descarga la imagen optimizada
         downloadImage(optimizedBlob, `optimized-${file.name}`);
         console.log('Imagen optimizada y descargada correctamente.');
     } catch (error) {
         console.error('Error al optimizar la imagen:', error);
     }
-});
+}
 
-const downloadMp4 = (url) => {
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'video.mp4';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-};
-
-// Limita la frecuencia de las descargas a una cada 2 segundos.
-const throttledDownload = throttle(downloadMp4, 2000);
-
-// Retrasa la acción de descarga hasta que el usuario deje de interactuar por 1 segundo.
-const debouncedDownload = debounce(downloadMp4, 1000);
+function performNonCriticalTasks() {
+    // Perform non-critical tasks here
+    console.log('Performing non-critical tasks');
+}

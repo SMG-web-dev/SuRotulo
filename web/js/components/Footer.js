@@ -1,64 +1,67 @@
 export class Footer extends HTMLElement {
   connectedCallback() {
+    this.render();
+    this.setupFooterNavigation();
+  }
+
+  render() {
     const currentPage = window.location.pathname.split("/").pop();
     const isContactPage = currentPage === 'contacto.html';
 
     this.innerHTML = `
-        <footer>
-          <div class="footer-content">
-            ${this.renderBrand()}
-            ${!isContactPage ? this.renderContactSection() : ''}
-            ${this.renderFooterNav(currentPage)}
-            ${this.renderFooterActions()}
-          </div>
-          ${this.renderFooterBottom()}
-        </footer>
+          <footer>
+              <div class="footer-content">
+                  ${this.renderBrand()}
+                  ${!isContactPage ? this.renderContactSection() : ''}
+                  ${this.renderFooterNav(currentPage)}
+                  ${this.renderFooterActions()}
+              </div>
+              ${this.renderFooterBottom()}
+          </footer>
       `;
-    // Configurar navegación con smooth scroll y actualización del contenido
-    this.setupFooterNavigation();
   }
 
   renderBrand() {
     return `
-        <div class="brand">
-          <div class="logo">
-            <img src="./public/img/logo.png" alt="SuRótulo Logo" />
+          <div class="brand">
+              <div class="logo">
+                  <img src="./public/img/logo.png" alt="SuRótulo Logo" width="150" height="50" loading="lazy" />
+              </div>
+              <p>Transformando espacios con diseños innovadores y sostenibles.</p>
+              <div class="social-links">
+                  <a href="#" aria-label="Facebook">
+                      <img src="./public/svg/facebook.svg" alt="Facebook" width="24" height="24" />
+                  </a>
+                  <a href="#" aria-label="Instagram">
+                      <img src="./public/svg/instagram.svg" alt="Instagram" width="24" height="24" />
+                  </a>
+                  <a href="#" aria-label="LinkedIn">
+                      <img src="./public/svg/linkedin.svg" alt="LinkedIn" width="24" height="24" />
+                  </a>
+              </div>
           </div>
-          <p>Transformando espacios con diseños innovadores y sostenibles.</p>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook">
-              <img src="./public/svg/facebook.svg" alt="Facebook" class="w-6 h-6" />
-            </a>
-            <a href="#" aria-label="Instagram">
-              <img src="./public/svg/instagram.svg" alt="Instagram" class="w-6 h-6" />
-            </a>
-            <a href="#" aria-label="LinkedIn">
-              <img src="./public/svg/linkedin.svg" alt="LinkedIn" class="w-6 h-6" />
-            </a>
-          </div>
-        </div>
       `;
   }
 
   renderContactSection() {
     return `
-        <div class="contact">
-          <h3>Contacto</h3>
-          <div class="contact-info">
-            <div class="contact-item">
-              <img src="./public/svg/map-pin.svg" alt="Ubicación" class="location" />
-              <span>123 Calle Principal, Ciudad</span>
-            </div>
-            <div class="contact-item">
-              <img src="./public/svg/phone.svg" alt="Teléfono" class="phone" />
-              <span>+34 123 456 789</span>
-            </div>
-            <div class="contact-item">
-              <img src="./public/svg/mail.svg" alt="Email" class="email" />
-              <span>info@surotulo.com</span>
-            </div>
+          <div class="contact">
+              <h3>Contacto</h3>
+              <div class="contact-info">
+                  <div class="contact-item">
+                      <img src="./public/svg/map-pin.svg" alt="Ubicación" width="24" height="24" />
+                      <span>123 Calle Principal, Ciudad</span>
+                  </div>
+                  <div class="contact-item">
+                      <img src="./public/svg/phone.svg" alt="Teléfono" width="24" height="24" />
+                      <span>+34 123 456 789</span>
+                  </div>
+                  <div class="contact-item">
+                      <img src="./public/svg/mail.svg" alt="Email" width="24" height="24" />
+                      <span>info@surotulo.com</span>
+                  </div>
+              </div>
           </div>
-        </div>
       `;
   }
 
@@ -77,60 +80,57 @@ export class Footer extends HTMLElement {
       .join('');
 
     return `
-        <div class="footer-nav">
-          <div class="quick-links">
-            <h3>Enlaces Rápidos</h3>
-            <nav>${links}</nav>
+          <div class="footer-nav">
+              <div class="quick-links">
+                  <h3>Enlaces Rápidos</h3>
+                  <nav>${links}</nav>
+              </div>
           </div>
-        </div>
       `;
   }
 
   renderFooterActions() {
     return `
-        <div class="footer-actions">
-          <div class="newsletter">
-            <h3>Boletín</h3>
-            <p>Suscríbete para recibir nuestras últimas noticias y ofertas.</p>
-            <form>
-              <input type="email" placeholder="Tu correo electrónico" required />
-              <button type="submit">Suscribirse</button>
-            </form>
+          <div class="footer-actions">
+              <div class="newsletter">
+                  <h3>Boletín</h3>
+                  <p>Suscríbete para recibir nuestras últimas noticias y ofertas.</p>
+                  <form id="newsletter-form">
+                      <input type="email" placeholder="Tu correo electrónico" required />
+                      <button type="submit">Suscribirse</button>
+                  </form>
+              </div>
           </div>
-        </div>
       `;
   }
 
   renderFooterBottom() {
     return `
-        <div class="footer-bottom">
-          <p>&copy; 2023 SuRótulo. Todos los derechos reservados.</p>
-          <p>
-            <br />Esta obra está bajo una 
-            <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
-              Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional
-            </a>.
-          </p>
-        </div>
+          <div class="footer-bottom">
+              <p>&copy; 2023 SuRótulo. Todos los derechos reservados.</p>
+              <p>
+                  <br />Esta obra está bajo una 
+                  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+                      Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional
+                  </a>.
+              </p>
+          </div>
       `;
   }
 
   setupFooterNavigation() {
-    // Interceptar clics en los enlaces del footer
-    const navLinks = this.querySelectorAll('.footer-navlink');
-    navLinks.forEach(link => {
+    this.querySelectorAll('.footer-navlink').forEach(link => {
       link.addEventListener('click', (event) => {
         event.preventDefault();
         const url = link.href;
-
-        // Cambiar la página y realizar un smooth scroll al inicio
-        this.changePage(url).then(() => {
-          document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          location.reload();
-        });
+        this.changePage(url);
       });
     });
 
+    const newsletterForm = this.querySelector('#newsletter-form');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', this.handleNewsletterSubmit.bind(this));
+    }
   }
 
   async changePage(url) {
@@ -142,18 +142,25 @@ export class Footer extends HTMLElement {
       const parser = new DOMParser();
       const newDocument = parser.parseFromString(html, 'text/html');
 
-      // Reemplazar el contenido principal
       const newContent = newDocument.querySelector('main');
       const currentContent = document.querySelector('main');
       if (currentContent && newContent) {
         currentContent.replaceWith(newContent);
       }
 
-      // Actualizar el estado del historial y el footer
       history.pushState(null, '', url);
-      this.connectedCallback(); // Reconstruye el footer dinámicamente
+      this.connectedCallback();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
       console.error('Error al cambiar de página:', error);
     }
+  }
+
+  handleNewsletterSubmit(event) {
+    event.preventDefault();
+    const email = event.target.querySelector('input[type="email"]').value;
+    console.log(`Suscripción al boletín: ${email}`);
+    // Aquí iría la lógica para manejar la suscripción al boletín
+    event.target.reset();
   }
 }
