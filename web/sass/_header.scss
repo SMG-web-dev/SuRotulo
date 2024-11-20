@@ -39,10 +39,6 @@ header {
     margin: auto;
   }
 
-  .logo img {
-    max-width: 9.5em;
-  }
-
   nav {
     display: flex;
     align-items: end;
@@ -142,7 +138,7 @@ header {
     @include header-padding;
 
     .logo img {
-      max-width: 8em;
+      max-width: 9em;
     }
   }
 
@@ -150,7 +146,7 @@ header {
     @include header-padding(2);
 
     .logo img {
-      max-width: 9.5em;
+      max-width: 10em;
     }
   }
 
@@ -158,7 +154,7 @@ header {
     @include header-padding(3);
 
     .logo img {
-      max-width: 11em;
+      max-width: 11.5em;
     }
 
     nav a {
