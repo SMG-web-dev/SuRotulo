@@ -1,15 +1,15 @@
+import { optimizeImage, downloadImage, debounce, throttle } from './utils/performance.js';
 import { setupIntersectionObserver } from './utils/lazyLoad.js';
 import { setupDynamicNavigation } from './utils/navigation.js';
 import { Header } from './components/Header.js';
 import { Footer } from './components/Footer.js';
 import { setupDocuments } from './utils/documents.js';
-import { optimizeImage, downloadImage, debounce, throttle } from './utils/performance.js';
+
 
 // Preload critical resources
 const preloadResources = () => {
     const criticalResources = [
-        { as: 'style', href: '/path/to/critical.css' },
-        { as: 'script', href: '/path/to/critical.js' },
+        { as: 'style', href: './web/css/main.css' },
         { as: 'image', href: './public/img/logo.png' },
     ];
 
@@ -73,6 +73,8 @@ function initializePageComponents(setupAnimations, LazyDocuments) {
 }
 
 async function changePage(url, pushState = true) {
+    const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+    if (currentPage === "documentos.html") { location.reload(); }
     try {
         const response = await fetch(url, { method: 'GET', cache: 'no-cache' });
         if (!response.ok) throw new Error('Network response was not ok');
