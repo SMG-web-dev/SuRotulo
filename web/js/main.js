@@ -3,6 +3,7 @@ import { setupDynamicNavigation } from './utils/navigation.js';
 import { Header } from './components/Header.js';
 import { Footer } from './components/Footer.js';
 import { setupDocuments } from './utils/documents.js';
+import { optimizeImage, downloadImage, debounce, throttle } from './utils/performance.js';
 
 if (performance.getEntriesByType("navigation")[0].type === "navigate") location.reload();
 // Lazy load components
@@ -40,7 +41,7 @@ async function initializePageComponents() {
 }
 
 async function changePage(url, pushState = true) {
-	location.reload();
+    location.reload();
     try {
         const response = await fetch(url);
         const html = await response.text();
@@ -74,3 +75,35 @@ function updateContent(newDocument) {
         currentFooter.replaceWith(newFooter);
     }
 }
+
+// Escucha el evento de selección de archivo
+document.getElementById('upload').addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    try {
+        // Optimiza el archivo a formato .webp
+        const optimizedBlob = await optimizeImage(file, 'image/webp', 0.7);
+
+        // Descarga la imagen optimizada
+        downloadImage(optimizedBlob, `optimized-${file.name}`);
+        console.log('Imagen optimizada y descargada correctamente.');
+    } catch (error) {
+        console.error('Error al optimizar la imagen:', error);
+    }
+});
+
+const downloadMp4 = (url) => {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'video.mp4';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+};
+
+// Limita la frecuencia de las descargas a una cada 2 segundos.
+const throttledDownload = throttle(downloadMp4, 2000);
+
+// Retrasa la acción de descarga hasta que el usuario deje de interactuar por 1 segundo.
+const debouncedDownload = debounce(downloadMp4, 1000);

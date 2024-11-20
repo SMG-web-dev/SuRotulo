@@ -19,7 +19,6 @@ export function setupDocuments() {
 
     if (isIOS()) {
         pdfContainer.classList.add('ios');
-        location.reload();
     }
 
     if (pdfViewer && buttons.length > 0) {
